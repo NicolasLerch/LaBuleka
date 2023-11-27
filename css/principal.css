@@ -1,0 +1,49 @@
+body{
+    padding: 0;
+    margin: 0;
+}
+
+header {
+    width: 100%;
+    height: 150px;
+    background-color: #74B951;
+}
+
+
+#logo img {
+    height: 150px;
+    width: auto;
+}
+
+nav{
+    background-color: blue;
+    height: 30px;
+}
+
+nav ul {
+    display: inline;
+        
+}
+nav a {
+    color: white;
+    text-decoration: none;
+}
+
+ul li {
+    float: left;
+    list-style: none;
+    width: 24%;
+    color: white;
+    text-align: center;
+    /*border-right: 1px solid grey;*/
+    padding: 0;
+    text-align: center;
+    align-content: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+}
+
+nav li:hover{
+    background-color: aqua;
+}
