@@ -17,7 +17,7 @@ header {
 
 main{
     position: relative;
-    width: 80%;
+    /*width: 100%;*/
     right: 0;
 }
 
@@ -87,51 +87,47 @@ nav li:hover{
     background-color: aqua;
 }
 
+/*CSS DE LA PAGINA LOCAL*/
+
 .map_conteiner{
-    position: relative;
-    height: 450px;
+    display: block;
+    position: absolute;
+    float: rigth;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     margin: auto;
+    height: auto;
+    width: auto;
     max-width: 800px;
-    background-color: blue;
+    /*background-color: rgb(236, 236, 214);
+    background-color: #74B951;*/
     padding: 10px;
     text-align: center;
+    pointer-events: none;
+    /*left: 25%;*/
+    
 }
 
-
-
-/*aside{
-    width: 19%;
-    min-width: 15%;
-    background-color: blue;
-    color: white;
-    text-decoration: none;
-}
-
-aside ul {
-    list-style: none;
-    margin-left: 10px;
-    text-decoration: none;
-}
-
-aside h3{
+.timetable{
+    position:absolute;
+    display: block;
+    float: rigth;
     font-family: Calibri;
-    margin: 10px;
+    margin-left: 30px;
+}
+.timetable h3, h4 {
+    margin: 0;
 }
 
-aside li {
-    width: 20%;
-    font-family: Calibri;
-    margin: 7px;
-}*/
+.timetable h3 {
+    margin-top: 10px;
+}
 
 
 
-/*
-.sidebar ul, a, li{
-    text-decoration: none;
-    display: inline;
-}*/
-
+/* CSS DE LA PAGINA TIENDA*/
 aside{
     display: inline;
     float: left;
