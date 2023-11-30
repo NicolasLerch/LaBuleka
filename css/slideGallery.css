@@ -1,5 +1,5 @@
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 img {vertical-align: middle;}
@@ -7,18 +7,25 @@ img {vertical-align: middle;}
 .img_slide_container {    
     max-width: 800px;
     max-height: 500px;
-    position: absolute;
+    position: relative;
+    /*margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;*/
     margin: auto;
     background-color: blue;
     left: 0;
     right: 0;
 }
 
+
 .slide{
    display: none;
    padding: 10px;
    
-   
+}
+
+.firstslide{
+  display: block;
 }
 
 .slide img{
@@ -70,9 +77,14 @@ max-width: 100%;
     display: inline-block;
     transition: background-color 0.6s ease;
   }
+
+  #dots{
+    position: absolute;
+    right: 45%;
+    margin-top: 15px;
+
+  }
   
   .active, .dot:hover {
     background-color: #717171;
   }
-
-  /*Falta centrar las imagenes y mostrarlas al cargar la pagina*/
