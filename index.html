@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/principal.css" rel="stylesheet"/>
+    <link href="css/slideGallery.css" rel="stylesheet"/>
+    <script src="js/main.js"></script>
+    <title>La Buleka</title>
+</head>
+<body onload="showSildes()">
+    <header>
+        <div id="logo">
+           <img src="images/logo.png" alt="La Buleka logo"/> 
+        </div>
+    </header>
+    <nav id="horizontal_nav">
+        <ul>
+            <li><a href="">Inicio</li>
+            <li><a href="">Tienda</li>
+            <li><a href="">Local</li>
+            <li><a href="">Contacto</li>
+        </ul>
+    </nav>
+
+    
+    <!-- Div contenedor de imagenes en slideShow -->
+    <div class="img_slide_container">
+
+    <!-- Next and previous buttons -->
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+        <!-- Full width images -->
+        <div class="slide">
+            <div class="numbertext">1 / 4</div>
+            <img src="images/tomates.jpg" alt="tomates" style="width: 100%">
+        </div>
+
+        <div class="slide">
+            <div class="numbertext">2 / 4</div>
+            <img src="images/huevos.jpg" alt="Huevos">
+        </div>
+
+        <div class="slide">
+            <div class="numbertext">3 / 4</div>
+            <img src="images/chia.avif" alt="Chia">
+        </div>
+
+        <div class="slide">
+            <div class="numbertext">4 / 4</div>
+            <img src="images/Paltas.webp" alt="Paltas">
+        </div>
+
+    </div>
+
+
+
+    <div style="text-align:center">
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
+    </div>
+
+</body>
+</html>
