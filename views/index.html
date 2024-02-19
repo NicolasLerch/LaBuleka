@@ -7,6 +7,7 @@
     <link href="css/slideGallery.css" rel="stylesheet"/>
     <script src="js/main.js"></script>
     <script src="https://kit.fontawesome.com/49746c139e.js" crossorigin="anonymous"></script>
+
     <title>La Buleka</title>
 
     <!-- Fuentes -->
@@ -14,11 +15,22 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
 </head>
+<body>
 <header>
+    <div class="dropdown">
+        <button class="dropbtn"><i class="fa-solid fa-bars"></i></button>
+        <div class="dropdown-content">
+            <a href="index.html">Inicio</a>
+            <a href="tienda.htm">Tienda</a>
+            <a href="local.html">Local</a>
+            <a href="">Contacto</a>
+        </div>
+    </div>
     <div class="logo-container">
         <img src="/images/logo.png" alt="La Buleka logo"/> 
     </div>
     <div class="bottom-header">
+        <i class="fa-solid fa-magnifying-glass"></i>
         <div class="search-bar">
             <input type="text" value="Buscar">
         </div>
@@ -30,12 +42,10 @@
             <li><a href="index.html">Inicio</li>
             <li><a href="tienda.html">Tienda</li>
             <li><a href="local.html">Local</li>
-            <li><a href="">Contacto</li>
+            <li><a href="#">Contacto</a></li>
         </ul>
     </nav>
 </header>
-
-<body>
     
     <!-- Div contenedor de imagenes en slideShow -->
     <div class="img_slide_container">
@@ -138,12 +148,6 @@
             </article>
         </section>
     </footer>
-
-
-
-
-
-
 
 </body>
 </html>

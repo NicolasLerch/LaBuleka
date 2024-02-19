@@ -6,6 +6,27 @@ const plusSlides = (n) => {
     showSlides(slideIndex += n);
 }
 
+
+
+// CONTROL DE MENU HAMBURGUESA
+document.addEventListener("DOMContentLoaded", function() {
+    var dropdown = document.getElementsByClassName("dropdown");
+    var i;
+
+    for (i = 0; i < dropdown.length; i++) {
+        dropdown[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var dropdownContent = this.getElementsByClassName("dropdown-content")[0];
+            if (dropdownContent.style.display === "block") {
+                dropdownContent.style.display = "none";
+            } else {
+                dropdownContent.style.display = "block";
+            }
+        });
+    }
+});
+
+
 // Thumbnail image controls
 function currentSlide(n) {
     showSlides(slideIndex = n);
