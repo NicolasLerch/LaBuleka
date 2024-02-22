@@ -1,0 +1,37 @@
+/*CSS DE LA PAGINA DE LA UBICACION DEL LOCAL*/
+
+.map_conteiner{
+    display: block;
+    position: absolute;
+    float: rigth;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    height: auto;
+    width: auto;
+    max-width: 800px;
+    /*background-color: rgb(236, 236, 214);
+    background-color: #74B951;*/
+    padding: 10px;
+    text-align: center;
+    pointer-events: none;
+    /*left: 25%;*/
+    
+}
+
+.timetable{
+    position:absolute;
+    display: block;
+    float: rigth;
+    font-family: Calibri;
+    margin-left: 30px;
+}
+.timetable h3, h4 {
+    margin: 0;
+}
+
+.timetable h3 {
+    margin-top: 10px;
+}
