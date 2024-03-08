@@ -3,25 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="css/principal.css" rel="stylesheet"/>
+    <link href="../css/mainStyles.css" rel="stylesheet"/>
     <script src="js/main.js"></script>
+    <script src="https://kit.fontawesome.com/49746c139e.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
     <title>Local</title>
 </head>
-<header>
-    <div id="logo">
-       <img src="images/logo.png" alt="La Buleka logo"/> 
-    </div>
-</header>
 
 <body>
-    <nav id="horizontal_nav">
-        <ul>
-            <li><a href="index.html">Inicio</li>
-            <li><a href="tienda.html">Tienda</li>
-            <li><a href="local.html">Local</li>
-            <li><a href="">Contacto</li>
-        </ul>
-    </nav>
+    <%-include('./partials/header.ejs') %>
     <main>
         <div class="timetable">
             <h3>Lunes a Viernes</h3>
@@ -37,6 +29,8 @@
             width="600" height="450" id="map"  allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
     </main>
+
+    <%-include('./partials/footer.ejs')%>
     
     
 </body>

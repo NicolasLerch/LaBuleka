@@ -261,6 +261,8 @@ nav li:hover{
     margin-bottom: 15px;
    }
 
+   /* FOOTER */
+
    footer article{
     margin: auto;
     margin-bottom: 0;
@@ -551,7 +553,5 @@ nav li:hover{
         height: 100%; /* Add this line */
         object-fit: cover; /* Add this line */
     }
-
-
 
 }

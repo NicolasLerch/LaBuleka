@@ -16,38 +16,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
 </head>
 <body>
-<header>
-    <div class="dropdown">
-        <button class="dropbtn"><i class="fa-solid fa-bars"></i></button>
-        <div class="dropdown-content">
-            <a href="index.html">Inicio</a>
-            <a href="tienda.htm">Tienda</a>
-            <a href="local.html">Local</a>
-            <a href="">Contacto</a>
-        </div>
-    </div>
-    <div class="logo-container">
-        <img src="/images/logo.png" alt="La Buleka logo"/> 
-    </div>
-    <div class="bottom-header">
-        <nav class="horizontal_nav">
-            <ul>
-                <li><a href="index.html">Inicio</li>
-                <li><a href="tienda.html">Tienda</li>
-                <li><a href="local.html">Local</li>
-                <li><a href="#">Contacto</a></li>
-            </ul>
-        </nav>
-        <i class="fa-solid fa-magnifying-glass mobile"></i>
-        <div class="search-bar">
-            <i class="fa-solid fa-magnifying-glass"><input type="text" placeholder="Buscar productos"></i>
-        </div>
-        <!-- <i class="fa-solid fa-cart-shopping"></i> -->
-    </div>
-    <!-- <i class="fa-solid fa-bars"></i> -->
-
-</header>
-    
+    <%-include('./partials/header.ejs')%>
     <!-- Div contenedor de imagenes en slideShow -->
     <div class="img_slide_container">
 
@@ -189,26 +158,8 @@
         </section>
         <a href="#">Ver todos los productos</a>
     </main>
-    <footer>
-        <section>
-            <article>
-                <i class="fa-solid fa-truck"></i>
-                <h3>Envío gratis</h3>
-                <p>Los sabados envíos gratis a domicilio a partir de los $4500.</p>
-            </article>
-            <article>
-                <i class="fa-solid fa-credit-card"></i>
-                <h3>Paga como quieras</h3>
-                <p>Paga con tarjeta de débito, crédito, efectivo o QR.</p>
-            </article>
-            <article>
-                <i class="fa-solid fa-shop"></i>
-                <h3>Retirá por el local</h3>
-                <p>Hacé tu pedido online y tenelo listo para retirar por el local cuando quieras.</p>
-            </article>
-        </section>
-        <p>Copyright © 2023-2024 LaBuleka S.R.L.</p>
-    </footer>
+    <%-include('./partials/footer')%>
+    
 
 </body>
 </html>

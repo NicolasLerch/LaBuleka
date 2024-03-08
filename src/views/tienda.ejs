@@ -1,17 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="css/principal.css" rel="stylesheet"/>
-    <title>Tienda</title>
+    <%-include('./partials/head.ejs')%>
 </head>
-<header>
-    <div id="logo">
-        <img src="images/logo.png" alt="La Buleka logo"/> 
-     </div>
-</header>
+
 <body>
+    <%-include('./partials/header.ejs')%>
     <nav id="horizontal_nav">
         <ul>
             <li><a href="index.html">Inicio</li>
@@ -97,8 +91,7 @@
         </div>
     </div>
 
-
-
+    <%-include('./partials/footer.ejs')%>
     
 </body>
 </html>
