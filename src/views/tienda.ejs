@@ -2,94 +2,55 @@
 <html lang="en">
 <head>
     <%-include('./partials/head.ejs')%>
+    <link rel="stylesheet" href="css/tienda.css">
 </head>
 
 <body>
     <%-include('./partials/header.ejs')%>
-    <nav id="horizontal_nav">
-        <ul>
-            <li><a href="index.html">Inicio</li>
-            <li><a href="tienda.html">Tienda</li>
-            <li><a href="local.html">Local</li>
-            <li><a href="">Contacto</li>
-        </ul>
-    </nav>
-    <aside>
-        <ul>
-            <li>Frutas</li>
-            <li>Verduras</li>
-            <li>Legumbres</li>
-            <li>Semillas</li>
-            <li>Huevos</li>
-            <li>Bebidas</li>
-            <li>Otros</li>
-        </ul>
-    </aside>
-    <div class="product_conteiner">
-        <div class="product_first_line">
-            <div class="product_area">
-                <div class="product_img">
-                    <img src="images/products/tomate.jpg" alt="tomates">
-                </div>
-                <div class="product_title">
-                    <p>Tomates</p>
-                </div>                
-                <div class="product_price"><h3>$1400</h3></div>
-            </div>
 
-            <div class="product_area">              
-                <div class="product_img">
-                    <img src="images/products/zanahorias.jpg" alt="Zanahorias">
-                </div>
-                <div class="product_title">
-                    <p>Zanahorias</p>
-                </div>  
-                <div class="product_price"><h3>$1500</h3></div>
-            </div>
+    <main>     
+        <aside class="categories"">
+            <ul>
+                <li>Frutas</li>
+                <li>Verduras</li>
+                <li>Legumbres</li>
+                <li>Semillas</li>
+                <li>Huevos</li>
+                <li>Bebidas</li>
+                <li>Otros</li>
+            </ul>
+        </aside>
+        <div class="mobile-categories">
+            <select>
+                <option>Frutas</option>
+                <option>Verduras</option>
+                <option>Legumbres</option>
+                <option>Semillas</option>
+                <option>Huevos</option>
+                <option>Bebidas</option>
+                <option>Otros</option>
 
-            <div class="product_area">               
-                <div class="product_img">
-                    <img src="images/products/huevos.jpg" alt="huevos">
-                </div>
-                <div class="product_title">
-                    <p>Huevos</p>
-                </div> 
-                <div class="product_price"><h3>$2500</h3></div>
-            </div>
+            </select>
         </div>
-
-        <div class="product_second_line">
-            <div class="product_area">              
-                <div class="product_img">
-                    <img src="images/products/manzana.webp" alt="Manzanas">
+        <section class="products">
+            <%for (i=0; i<productos.length; i++){%>
+            <article>
+                <div class="img_container">
+                    <img src= "<%= productos[i].img%>" alt="<%= productos[i].nombre%>">
                 </div>
-                <div class="product_title">
-                    <p>Manzanas</p>
-                </div>  
-                <div class="product_price"><h3>$1000</h3></div>
-            </div>
-
-            <div class="product_area">           
-                <div class="product_img">
-                    <img src="images/products/Naranja1.jpg" alt="Naranjas">
+                <div class="product_footer">
+                    <p><%= productos[i].nombre%></p>
+                    <p>$<%= productos[i].precio%></p>
                 </div>
-                <div class="product_title">
-                    <p>Naranja</p>
-                </div>     
-                <div class="product_price"><h3>$1200</h3></div>
-            </div>
-
-            <div class="product_area">              
-                <div class="product_img">
-                    <img src="images/products/paltas.jpg" alt="Palta">
+                <div class="add-cart">
+                    <p>Agregar al carrito</p>
                 </div>
-                <div class="product_title">
-                    <p>Palta</p>
-                </div>  
-                <div class="product_price"><h3>$800 x unidad</h3></div>
-            </div>
-        </div>
-    </div>
+            </article>
+            <%}%>
+        </section>
+    </main>
+    
+
 
     <%-include('./partials/footer.ejs')%>
     
