@@ -1,15 +1,19 @@
-const path = require('path')
-const productos = require('../models/products')
+let productos = require('../models/products');
+let path = require('path');
+const fs = require('fs');
+
+const productsFilePath = path.join(__dirname, '../models/products.json');
+const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
 
 const mainController = {
     viewIndex : function (req, res){
-        res.render('index', {productos: productos.getAll()});
+        res.render('index', {productos: productos});
     },
     viewLocal : function (req, res){
         res.render('local');
     },
     viewTienda : function(req, res){
-        res.render('tienda', {productos: productos.getAll()});
+        res.render('tienda', {productos: productos});
     },
     viewProducts : function(req, res){
         res.render('index', {productos: productos.getAll()})

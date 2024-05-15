@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <%-include('./partials/head.ejs')%>
+   <link rel="stylesheet" href="/css/newProduct.css">
+</head>
+    <%-include('./partials/header.ejs')%>
+
+    <h2>Crear nuevo producto</h2>
+
+    <form class="newProductForm" action="/products/create" method="POST" enctype="multipart/form-data">
+        <label for="">
+            <input type="text" name="name" placeholder="Nombre del producto">
+        </label>
+        <label for=""> <p>Imagen del producto</p>
+            <input type="file" name="product-img" placeholder="Imagen del producto">
+        </label>
+        <label for="">
+            <input type="text" name="price" placeholder="Precio*">
+        </label>
+        <select class="category" name="category">
+            <option value="" selected hidden>Categoria</option>
+            <option value="fruits">Frutas</option>
+            <option value="vegetables">Verduras</option>
+            <option value="frozen">Congelados</option>
+            <option value="cereal">Cereales</option>
+            <option value="legumbres">Legumbres</option>
+            <option value="other">Otros</option>
+        </select>
+        <div class="available-container">
+            <label>
+                <input type="radio" name="available" value="true">
+            </label>Producto disponible
+        </div>
+        <div class="available-container">
+            <label>
+                <input type="radio" name="noAvailable" value="true">
+            </label>Producto no disponible            
+        </div>
+        
+        <button class="submit-button" type="submit">Guardar producto</button>
+    </form>
+
+
+
+    <%-include('./partials/footer.ejs')%>
+<body>
+    
+</body>
+</html>

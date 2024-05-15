@@ -9,7 +9,8 @@
     <%-include('./partials/header.ejs')%>
 
     <main>     
-        <aside class="categories"">
+        <aside class="categories">
+            <p>Filtros</p>
             <ul>
                 <li>Frutas</li>
                 <li>Verduras</li>
@@ -34,19 +35,19 @@
         </div>
         <section class="products">
             <%for (i=0; i<productos.length; i++){%>
-            <article>
-                <div class="img_container">
-                    <img src= "<%= productos[i].img%>" alt="<%= productos[i].nombre%>">
-                </div>
-                <div class="product_footer">
-                    <p><%= productos[i].nombre%></p>
-                    <p>$<%= productos[i].precio%></p>
-                </div>
-                <div class="add-cart">
-                    <p>Agregar al carrito</p>
-                </div>
-            </article>
-            <%}%>
+                <article>
+                    <div class="img_container">
+                        <img src= "/images/products/<%= productos[i].img%>" alt="<%= productos[i].nombre%>">
+                    </div>
+                    <div class="product_footer">
+                        <p><%= productos[i].name%></p>
+                        <p>$<%= productos[i].price%></p>
+                    </div>
+                    <div class="add-cart">
+                        <p>Agregar al carrito</p>
+                    </div>
+                </article>
+                <%}%>
         </section>
     </main>
     

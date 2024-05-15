@@ -85,10 +85,11 @@ main a{
     background-color: green;
     color: white;
     font-family: Open sans;
+    padding: 0;
 }
 
 .add-cart p{
-    padding: 10px;
+    /* padding: 10px; */
 }
 
 
@@ -108,29 +109,49 @@ main a{
 
    
     
-   @media (min-width: 700px) and (max-width: 1023px){
+@media (min-width: 700px) and (max-width: 1023px){
     
-   }
+}
 
 
 
 
 @media (min-width: 800px){
-    .categories{
+    aside.categories{
         display:flex;
-
+        flex-direction: column;
+        justify-content: center;
+        width: 20%;
+        align-self: flex-start;
+        margin-top: 10px;
+        color: white;
     }
+
+    aside.categories li:hover{
+        cursor: pointer;
+        background-color: aqua;
+    }
+
     .mobile-categories{
         display: none;
     }
+
     main{
         display: flex;
+        justify-content: space-between;
+        width: 1050px;
+        margin: auto;
+        align-items: flex-start;
     }
 
     main section{
         display: flex;
-        justify-content: space-between;
+        justify-content:flex-start;
         flex-wrap: wrap;
+    }
+
+    main .products {
+        width: 75%;
     }
 
     main section article{
