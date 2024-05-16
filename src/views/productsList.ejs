@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/productsList.css">
+    <title>Productos</title>
+    <%-include("./partials/head.ejs")%>
+    
+</head>
+
+<body>
+    <%-include('./partials/header.ejs')%>
+
+    <div class="products">
+        <h1>Productos</h1>
+        <div class="product-container titles">
+            <p class="listElement">Producto</p>
+            <p class="listElement imageTitle">Imagen</p>
+            <p class="listElement">Precio</p>
+            <p class="listElement">Stock</p>
+            <p class="listElement availableTitle">Disponibilidad</p>
+            <p class="listElement"></p>
+        </div>
+            <%for(i=0; i < productos.length; i++){%>
+                <div class="product-container">
+                    <p class="name listElement"><%=productos[i].name%></p>
+                    <img class="image listElement" src="/images/products/<%=productos[i].img%>"></p>
+                    <p class="price listElement">$<%=productos[i].price%></p>
+                    <p class="stock listElement"><%=productos[i].stock%></p>
+                    <%if(productos[i].available){%><p class="available listElement">Disponible</p><%}else{%>
+                    <p class="available">No disponible</p><%}%>
+                    <div class="edit-btn-container listElement">
+                        <a href="#" class="editButton listElement">Editar</a>
+                    </div>                    
+                </div>
+           
+    
+    <div class="edit-product-container">
+        <div class="editForm">            
+            <form class="newProductForm" action="/products/<%=productos[i].id%>/edit?_method=PUT" method="POST" enctype="multipart/form-data">
+                <h1>Editar producto</h1>
+                <label for="">Nombre del producto
+                    <input type="text" name="name" placeholder="Nombre del producto" value="<%=productos[i].name%>">
+                </label>
+                <label for=""> <p>Imagen del producto</p>
+                    <input type="file" name="product-img" placeholder="Imagen del producto">
+                </label>
+                <label for="">Precio
+                    <input type="text" name="price" placeholder="Precio*" value="<%=productos[i].price%>">
+                </label>
+                <select class="category" name="category" value="<%=productos[i].category%>">
+                    <option value="" selected hidden>Categoria</option>
+                    <option value="fruits">Frutas</option>
+                    <option value="vegetables">Verduras</option>
+                    <option value="frozen">Congelados</option>
+                    <option value="cereal">Cereales</option>
+                    <option value="legumbres">Legumbres</option>
+                    <option value="other">Otros</option>
+                </select>
+                <label for="">Stock
+                    <input type="text" name="stock" placeholder="Stock" value="<%=productos[i].stock%>">
+                </label>
+                <div class="available-container">
+                    <label>
+                        <input type="radio" name="available" value="true">
+                    </label>Producto disponible
+                </div>
+                <div class="available-container">
+                    <label>
+                        <input type="radio" name="noAvailable" value="true">
+                    </label>Producto no disponible            
+                </div>
+                
+                <div class="btns-container">
+                    <button class="btn editBtn" type="submit">Guardar cambios</button>
+                    <button class="btn cancelBtn" type="button">Cancelar</button>
+                    <button type="button" class="btn deleteBtn">Eliminar producto</button>
+                </div>
+               
+            </form>
+        </div>        
+    </div>
+    <%}%>
+</div>
+
+    <script src="/js/editForm.js" type="text/javascript"></script>
+</body>
+</html> 

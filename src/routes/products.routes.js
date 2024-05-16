@@ -22,4 +22,10 @@ router.get("/", productController.getAll);
 router.get('/create', productController.create);
 router.post('/create', upload.single("product-img"), productController.save);
 
+// vista de lista de productos para admin
+router.get('/all', productController.productsList)
+
+// editar producto
+router.put('/:id/edit',upload.single("product-img"), productController.edit)
+
 module.exports = router;

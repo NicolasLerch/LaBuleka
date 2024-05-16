@@ -35,6 +35,31 @@ const controller = {
         fs.writeFileSync(productsFilePath, productsJSON);
 
         res.redirect("/products")
+    },
+
+    productsList : function(req, res){
+        res.render("productsList", {productos})
+    },
+
+    edit: function(req, res){
+        let productToEdit = products.find(product => product.id == req.params.id);
+        let productIndex = products.indexOf(productToEdit);
+        console.log(productToEdit);
+
+        products[productIndex] = {
+            id: req.params.id,
+            name: req.body.name,
+            img: req.file.filename,
+            price: req.body.price,
+            category: req.body.category,
+            stock: req.body.stock,
+            available: req.body.available
+        }
+
+        let productsJSON = JSON.stringify(products);
+        fs.writeFileSync(productsFilePath, productsJSON);
+
+        res.send(products[productIndex]);
     }
 }
 

@@ -1,0 +1,151 @@
+.products{
+    display: flex;
+    flex-direction: column;
+    width: 1024px;
+    margin: auto;
+}
+
+.product-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    height: 80px;
+    border: 1px red dotted;
+    width: 80%;
+    margin: auto;
+    padding: 10px;
+}
+
+.product-container .listElement{
+    width: 20%;
+}
+
+.editButton{
+    background-color: grey;
+    border: none;
+    border-radius: 5px;
+    width: 10%;
+}
+a.editButton{
+    padding: 10px;
+    text-decoration: none;
+    color: white;
+}
+
+
+.product-container .image{
+    width: 80px;
+    height: auto;
+    object-fit: cover;
+}
+
+@media(max-width: 1024px){
+    .products{
+        width: 90%;
+    }
+}
+
+@media(max-width: 1024px){
+    .product-container img, .imageTitle{
+        display: none;
+    }
+    .product-container{
+        width: 100%;
+    }
+}
+
+@media(max-width: 439px){
+    .product-container img, .imageTitle, .availableTitle, .available{
+        display: none;
+    }
+    .product-container{
+        width: 100%;
+    }
+}
+
+/* ESTILO DE FORMULARIO DE EDICION */
+.edit-product-container{
+    display: none;
+    margin: auto;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.5);
+    top: 0;
+    left: 0;
+}
+
+.newProductForm{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+    margin: auto;
+    padding: 20px;
+    background-color: rgb(236, 236, 214);
+    margin-top: 2%;
+    border-radius: 5px;
+    overflow-y: scroll;
+}
+
+.newProductForm input, .newProductForm select{
+    margin: 10px;
+    height: 35px;
+    border: 1px solid grey;
+    border-radius: 5px;
+    width: 300px;
+}
+
+.newProductForm p{
+    margin-left: 10px;
+    margin-bottom: -12px;
+    height: 35px;
+    padding: 0;
+}
+
+.available-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    margin-left: -55px;
+}
+
+.available-container input{
+    width: 20px;
+}
+
+.submit-button{
+    display: none;
+}
+
+.btn{
+    border: none;
+    border-radius: 5px;
+    margin: 5px;
+    height: 45px;
+}
+
+.btn:hover{
+    cursor: pointer;
+}
+
+.editBtn{
+    background-color: green;
+    color: white;
+}
+
+.cancelBtn{
+    background-color: grey;
+}
+
+.deleteBtn{
+    background-color: red;
+    color: white;
+}
+
+.show{
+    display: block;
+}
