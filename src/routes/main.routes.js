@@ -11,7 +11,11 @@ router.get('/tienda', mainController.viewTienda);
 router.get('/cart', cartController.getCart);
 router.post('/cart/:id', cartController.addToCart);
 
+// limpiar el carrito completo
 router.delete('/cart', cartController.emptyCart)
+
+// borrar un elemento del carrito
+router.delete('/cart/:id', cartController.deleteFromCart)
 
 
 

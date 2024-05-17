@@ -20,12 +20,16 @@
                 <div class="one-product-container">
                     <p>Producto: <%=cart[i].name%></p>
                     <p>Cantidad: <%=cart[i].quantity%></p>
-                    <p>Precio: $<%=cart[i].price%></p>
+                    <p class="priceTitle">Precio: $<%=cart[i].price%></p>
                     <p>Subtotal: $<%=cart[i].subtotal%></p>
+                    <form>
+                        <button class="deleteBtn" type="submit" formaction="/cart/<%=cart[i].id%>?_method=DELETE" formmethod="POST">Quitar</button>
+                    </form>
+                    
                 </div>
             <%}%>
             <form>
-                <button type="submit" formaction="/cart?_method=DELETE" formmethod="POST">Limpiar carrito</button>
+                <button class="clear-button" type="submit" formaction="/cart?_method=DELETE" formmethod="POST">Limpiar carrito</button>
             </form>
         </div>
 
@@ -34,7 +38,7 @@
             <h4>Subtotal: $<%=bill.subtotal%></h4>
             <h4>Descuentos: $<%=bill.discounts%></h4>
             <h3>Total: $<%=bill.total%></h3>
-            <button type="button">Continuar</button>
+            <button class="continue-button" type="button">Continuar</button>
             
         </div>
     </main>

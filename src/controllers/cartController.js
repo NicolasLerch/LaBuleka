@@ -52,6 +52,7 @@ const controller = {
     },
 
     addToCart: function(req, res){
+        let cart = JSON.parse(fs.readFileSync(cartFilePath, 'utf-8'));
         let productToAdd = products.find(product => product.id == req.params.id);
         let quantity = 0;
         if(req.body.quantity == null || req.body.quantity == ""){
@@ -60,19 +61,37 @@ const controller = {
             quantity = req.body.quantity;
         }
 
+        let maxId = 0;
+        for (const obj of cart) {
+            if (obj.id && obj.id > maxId) {
+                maxId = obj.id;
+            }
+        }        
+
         let product = {
+            id: maxId + 1,
             name: productToAdd.name,
             price: parseInt(productToAdd.price),
             quantity: quantity,
             subtotal: parseInt(productToAdd.price) * quantity
         }
-        let cart = JSON.parse(fs.readFileSync(cartFilePath, 'utf-8'));
+        
         cart.push(product);
         let cartJSON = JSON.stringify(cart);
         fs.writeFileSync(cartFilePath, cartJSON);
         controller.updateBill();
         res.redirect('/products');
+    },
+
+    deleteFromCart: function(req, res){
+        let cart = JSON.parse(fs.readFileSync(cartFilePath, 'utf-8'));
+        let productToDelete = cart.find(product => product.id == req.params.id)
+        let productIndex = cart.indexOf(productToDelete)
+        cart.splice(productIndex, 1);
+        fs.writeFileSync(cartFilePath, JSON.stringify(cart));
+        res.redirect('/cart')
     }
 }
+
 
 module.exports = controller;
