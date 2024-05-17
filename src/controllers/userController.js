@@ -38,6 +38,21 @@ const controller = {
             res.send(users)
 
         }        
+    },
+
+    processLogin: function(req, res){
+        let userToLogin = users.find(user => user.mail == req.body.email.toLowerCase().trim());
+
+        if(userToLogin){
+            if(bcryptjs.compareSync(req.body.password, userToLogin.password)){
+                req.session.userLogged = userToLogin;
+                res.send(req.session.userLogged)
+            } else {
+                res.status(400).json({ error: "Contraseña incorrecta" });
+            }
+        } else {
+            res.status(400).json({ error: "Usuario no encontrado." });
+        }
     }
 
 }

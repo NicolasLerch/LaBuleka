@@ -3,4 +3,8 @@ const express = require('express');
 const router = express.Router();
 const multer = require("multer")
 const path = require("path")
+const userController = require('../controllers/userController');
 
+router.post('/login', userController.processLogin);
+
+module.exports = router;
