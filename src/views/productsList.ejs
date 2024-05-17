@@ -75,7 +75,7 @@
                 <div class="btns-container">
                     <button class="btn editBtn" type="submit">Guardar cambios</button>
                     <button class="btn cancelBtn" type="button">Cancelar</button>
-                    <button type="button" class="btn deleteBtn">Eliminar producto</button>
+                    <button type="submit" class="btn deleteBtn" formaction="/products/<%=productos[i].id%>/delete?_method=DELETE" formmethod="POST">Eliminar producto</button>
                 </div>
                
             </form>

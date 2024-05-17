@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%-include('./partials/head.ejs')%>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+</head>
+<body>
+    <%-include('./partials/header.ejs')%>
+
+    <h2>Carrito</h2>
+    <%for(i=0; i<cart.length; i++){%>
+    <p>Producto: <%=cart[i].name%></p>
+    <p>Cantidad: <%=cart[i].quantity%></p>
+    <p>Precio: <%=cart[i].price%></p>
+    <p>Subtotal: <%=cart[i].subtotal%></p>
+    <%}%>
+
+    <h3>Total: <%=bill.total%></h3>
+    <form>
+        <button type="submit" formaction="/cart?_method=DELETE" formmethod="POST">Limpiar carrito</button>
+    </form>
+    
+
+    <%-include('./partials/footer.ejs')%>
+    
+</body>
+</html>

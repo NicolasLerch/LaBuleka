@@ -65,12 +65,14 @@
                     <p>$<%= productos[i].price%></p>
                 </div>
                 <div class="add-cart">
-                    <p>Agregar al carrito</p>
+                    <form>
+                        <button type="submit" formaction="/cart/<%= productos[i].id%>" formmethod="POST">Agregar al carrito</button>
+                    </form>
                 </div>
             </article>
             <%}%>
         </section>
-        <a href="#">Ver todos los productos</a>
+        <a href="/products">Ver todos los productos</a>
     </main>
     <%-include('./partials/footer')%>
     

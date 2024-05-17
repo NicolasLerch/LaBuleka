@@ -85,15 +85,18 @@ nav li:hover{
     width: 100%;
    }
 
-   .add-cart{
+   .add-cart button{
     /* border: 1px dotted red; */
+    border: none;
+    border-radius: 5px;
     margin:5px;
     background-color: green;
     color: white;
     font-family: Open sans;
+    padding: 10px;
    }
 
-   .add-cart p{
+   .add-cart button{
     padding: 10px;
    }
 

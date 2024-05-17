@@ -44,7 +44,9 @@
                         <p>$<%= productos[i].price%></p>
                     </div>
                     <div class="add-cart">
-                        <p>Agregar al carrito</p>
+                        <form>
+                            <button type="submit" formaction="/cart/<%= productos[i].id%>" formmethod="POST">Agregar al carrito</button>
+                        </form> 
                     </div>
                 </article>
                 <%}%>

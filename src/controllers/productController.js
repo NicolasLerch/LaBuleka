@@ -20,10 +20,17 @@ const controller = {
             }
         }
 
+        let mainImage = "";
+        if(!req.file || req.file == undefined){
+            mainImage = "default.avif";
+        } else {
+            mainImage = req.file.filename;
+        }
+
         const newProduct = {
             id: maxId + 1,
             name: req.body.name,
-            img: req.file.filename,
+            img: mainImage,
             price: req.body.price,
             category: req.body.category,
             available: req.body.available
@@ -46,10 +53,18 @@ const controller = {
         let productIndex = products.indexOf(productToEdit);
         console.log(productToEdit);
 
+        let mainImage = "";
+
+        if(!req.file || req.file == undefined || req.file == "default.avif"){
+            mainImage = productToEdit.img;
+        } else {
+            mainImage = req.file.filename;
+        }
+
         products[productIndex] = {
             id: req.params.id,
             name: req.body.name,
-            img: req.file.filename,
+            img: mainImage,
             price: req.body.price,
             category: req.body.category,
             stock: req.body.stock,
@@ -59,7 +74,16 @@ const controller = {
         let productsJSON = JSON.stringify(products);
         fs.writeFileSync(productsFilePath, productsJSON);
 
-        res.send(products[productIndex]);
+        res.redirect("/products/all");
+    },
+    delete: function(req, res){
+        let productToDelete = products.find(product => product.id == req.params.id);
+        let productIndex = products.indexOf(productToDelete);
+        console.log(productToDelete);
+        products.splice(productIndex, 1);
+        let productsJSON = JSON.stringify(products);
+        fs.writeFileSync(productsFilePath, productsJSON);
+        res.send(products);
     }
 }
 
