@@ -17,7 +17,7 @@ const controller = {
 
         console.log(cart);
         for(let i = 0; i < cart.length; i++){
-            billTotal += parseInt(cart[i].price);
+            billTotal += parseInt(cart[i].subtotal);
         }
         let bill = {
             count: cart.length,
@@ -53,9 +53,18 @@ const controller = {
 
     addToCart: function(req, res){
         let productToAdd = products.find(product => product.id == req.params.id);
+        let quantity = 0;
+        if(req.body.quantity == null || req.body.quantity == ""){
+            quantity = 1;
+        } else {
+            quantity = req.body.quantity;
+        }
+
         let product = {
             name: productToAdd.name,
-            price: parseInt(productToAdd.price)
+            price: parseInt(productToAdd.price),
+            quantity: quantity,
+            subtotal: parseInt(productToAdd.price) * quantity
         }
         let cart = JSON.parse(fs.readFileSync(cartFilePath, 'utf-8'));
         cart.push(product);

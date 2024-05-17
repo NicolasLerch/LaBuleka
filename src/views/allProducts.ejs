@@ -67,6 +67,8 @@
                 </div>
                 <div class="add-cart">
                     <form>
+                        <label for="quantity" >Cantidad</label>
+                        <input class="quantityInput" name="quantity" type="number">
                         <button type="submit" formaction="/cart/<%= productos[i].id%>" formmethod="POST">Agregar al carrito</button>
                     </form>                    
                 </div>

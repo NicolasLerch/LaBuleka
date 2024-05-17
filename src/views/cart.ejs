@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <%-include('./partials/head.ejs')%>
+    <link rel="stylesheet" href="./css/cart.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cart</title>
@@ -9,18 +10,35 @@
 <body>
     <%-include('./partials/header.ejs')%>
 
-    <h2>Carrito</h2>
-    <%for(i=0; i<cart.length; i++){%>
-    <p>Producto: <%=cart[i].name%></p>
-    <p>Cantidad: <%=cart[i].quantity%></p>
-    <p>Precio: <%=cart[i].price%></p>
-    <p>Subtotal: <%=cart[i].subtotal%></p>
-    <%}%>
 
-    <h3>Total: <%=bill.total%></h3>
-    <form>
-        <button type="submit" formaction="/cart?_method=DELETE" formmethod="POST">Limpiar carrito</button>
-    </form>
+    <h2>Carrito de compras</h2>
+    <main>
+        
+        <div class="cart-container">
+            
+            <%for(i=0; i<cart.length; i++){%>
+                <div class="one-product-container">
+                    <p>Producto: <%=cart[i].name%></p>
+                    <p>Cantidad: <%=cart[i].quantity%></p>
+                    <p>Precio: $<%=cart[i].price%></p>
+                    <p>Subtotal: $<%=cart[i].subtotal%></p>
+                </div>
+            <%}%>
+            <form>
+                <button type="submit" formaction="/cart?_method=DELETE" formmethod="POST">Limpiar carrito</button>
+            </form>
+        </div>
+
+        <div class="total-container">
+            <h4>Resumen de compra</h4>
+            <h4>Subtotal: $<%=bill.subtotal%></h4>
+            <h4>Descuentos: $<%=bill.discounts%></h4>
+            <h3>Total: $<%=bill.total%></h3>
+            <button type="button">Continuar</button>
+            
+        </div>
+    </main>
+    
     
 
     <%-include('./partials/footer.ejs')%>
