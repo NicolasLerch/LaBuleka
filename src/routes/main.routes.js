@@ -4,12 +4,17 @@ const router = express.Router();
 const mainController = require('../controllers/mainController')
 const productController = require('../controllers/productController');
 const cartController = require('../controllers/cartController');
+const userController = require('../controllers/userController')
 
 router.get('/', mainController.viewIndex);
 router.get('/local', mainController.viewLocal);
 router.get('/tienda', mainController.viewTienda);
 router.get('/cart', cartController.getCart);
 router.post('/cart/:id', cartController.addToCart);
+
+router.get('/login', mainController.login)
+router.get('/register', mainController.register)
+router.post('/register', userController.create)
 
 // limpiar el carrito completo
 router.delete('/cart', cartController.emptyCart)

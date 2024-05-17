@@ -17,6 +17,12 @@ const mainController = {
     },
     viewProducts : function(req, res){
         res.render('index', {productos: productos.getAll()})
+    },
+    login: function(req, res){
+        res.render('login')
+    },
+    register: function(req, res){
+        res.render('register')
     }
 }
 
