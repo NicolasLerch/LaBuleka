@@ -10,12 +10,13 @@ const billFilePath = path.join(__dirname, '../models/bill.json');
 
 const controller = {
 
-    cart: JSON.parse(fs.readFileSync(cartFilePath, 'utf-8')),
+    // cart: JSON.parse(fs.readFileSync(cartFilePath, 'utf-8')),
     getBill: function(req, res){
+        let cartPath = path.join(__dirname, '../models/'+req.session.userLogged.cart+'.json');
         let billTotal = 0;
-        let cart = JSON.parse(fs.readFileSync(cartFilePath, 'utf-8'));
 
-        console.log(cart);
+        let cart = JSON.parse(fs.readFileSync(cartPath, 'utf-8'));
+
         for(let i = 0; i < cart.length; i++){
             billTotal += parseInt(cart[i].subtotal);
         }
@@ -39,20 +40,31 @@ const controller = {
     },
 
     getCart: function(req, res){
-        controller.updateBill();
-        let finalBill = JSON.parse(fs.readFileSync(billFilePath, 'utf-8'));
-        let cart = JSON.parse(fs.readFileSync(cartFilePath, 'utf-8'));
+        controller.updateBill(req, res);
+        let billPath = path.join(__dirname, '../models/bill'+req.session.userLogged.cart+'.json');
+        let cartPath = path.join(__dirname, '../models/'+req.session.userLogged.cart+'.json');
+        let finalBill = JSON.parse(fs.readFileSync(billPath, 'utf-8'));
+        let cart = JSON.parse(fs.readFileSync(cartPath, 'utf-8'));
         
         res.render('cart', {cart: cart, bill: finalBill});
     },
 
     updateBill : (req, res) =>{
-        let bill = controller.getBill();
-        fs.writeFileSync(billFilePath, bill);
+        let bill = controller.getBill(req, res);
+        let billPath = path.join(__dirname, '../models/bill'+req.session.userLogged.cart+'.json');
+        if (!fs.existsSync(billPath)) {
+            fs.writeFileSync(billPath, '[]');
+        }
+
+        fs.writeFileSync(billPath, bill);
     },
 
     addToCart: function(req, res){
-        let cart = JSON.parse(fs.readFileSync(cartFilePath, 'utf-8'));
+        let cartPath = path.join(__dirname, '../models/'+req.session.userLogged.cart+'.json');
+        if (!fs.existsSync(cartPath)) {
+            fs.writeFileSync(cartPath, '[]');
+        }
+        let cart = JSON.parse(fs.readFileSync(cartPath, 'utf-8'))
         let productToAdd = products.find(product => product.id == req.params.id);
         let quantity = 0;
         if(req.body.quantity == null || req.body.quantity == ""){
@@ -78,7 +90,7 @@ const controller = {
         
         cart.push(product);
         let cartJSON = JSON.stringify(cart);
-        fs.writeFileSync(cartFilePath, cartJSON);
+        fs.writeFileSync(cartPath, cartJSON);
         controller.updateBill();
         res.redirect('/products');
     },

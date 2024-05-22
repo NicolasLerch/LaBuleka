@@ -104,6 +104,19 @@ nav li:hover{
     width: 20%;
 }
 
+.fa-user{
+    font-size: 1.5em;
+    color: white;
+    align-self: right;
+    text-align: right;
+}
+
+a.user-icon{
+    align-self: right;
+    width: 25%;
+    text-align: right;
+}
+
 
 /* Media queries mobile */
 @media (max-width: 459px){
@@ -133,7 +146,7 @@ nav li:hover{
     /* padding: 10px; */
    }
 
-   header .fa-solid{
+   header .fa-magnifying-glass{
     font-size: 1.7em;
     margin:auto;
     color: white;
@@ -357,7 +370,7 @@ nav li:hover{
         height: 25px;
     }
 
-    .bottom-header .fa-solid{
+    .bottom-header .fa-magnifying-glass{
         background-color: white;
         color: grey;
         border-radius: 5px;
@@ -381,6 +394,12 @@ nav li:hover{
     main article{
         width: 30%;
         margin:10px;
+    }
+
+    a.user-icon{
+        align-self: right;
+        width: 20%;
+        text-align: right;
     }
 
 }
@@ -421,7 +440,6 @@ nav li:hover{
         display: flex;
         justify-content: space-between;
         padding: 0 10px;
-        /* margin-bottom: 10px; */
         align-items: center;
     }
 
@@ -460,7 +478,7 @@ nav li:hover{
         height: 25px;
     }
 
-    .bottom-header .fa-solid{
+    .bottom-header .fa-magnifying-glass{
         background-color: white;
         color: grey;
         border-radius: 5px;
@@ -511,6 +529,12 @@ nav li:hover{
         padding: 0;
         margin: 0;
     }
+
+    a.user-icon{
+        align-self: right;
+        width: 20%;
+        text-align: right;
+    }
 }
 
 @media (min-width: 800px){
@@ -527,6 +551,12 @@ nav li:hover{
     main section article{
         margin: 10px;
         width: 20%;
+    }
+
+    a.user-icon{
+        align-self: right;
+        width: 20%;
+        text-align: right;
     }
 }
 

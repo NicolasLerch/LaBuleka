@@ -28,7 +28,9 @@ const controller = {
                 name: req.body.name,
                 lastName: req.body.lastName,
                 mail: req.body.email,
-                password: hashedPassword
+                password: hashedPassword,
+                cart: "cart-" + Date.now(),
+                rol: "client"
             }
     
             users.push(newUser)

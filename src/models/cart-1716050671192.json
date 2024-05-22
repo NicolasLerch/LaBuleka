@@ -1,0 +1,23 @@
+[
+    {
+        "id": 1,
+        "name": "Zanahorias",
+        "price": 2100,
+        "quantity": 1,
+        "subtotal": 2100
+    },
+    {
+        "id": 2,
+        "name": "Tomates",
+        "price": 1300,
+        "quantity": 1,
+        "subtotal": 1300
+    },
+    {
+        "id": 3,
+        "name": "Ajos",
+        "price": 800,
+        "quantity": "2",
+        "subtotal": 1600
+    }
+]

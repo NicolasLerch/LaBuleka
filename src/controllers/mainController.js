@@ -23,6 +23,10 @@ const mainController = {
     },
     register: function(req, res){
         res.render('register')
+    },
+
+    check: function(req, res){
+        res.send(req.session.userLogged)
     }
 }
 
