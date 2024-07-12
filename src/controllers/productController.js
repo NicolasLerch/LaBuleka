@@ -1,6 +1,7 @@
 let productos = require('../models/products');
 let path = require('path');
 const fs = require('fs');
+const db = require('../data/models');
 
 const productsFilePath = path.join(__dirname, '../models/products.json');
 const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
@@ -83,6 +84,10 @@ const controller = {
         products.splice(productIndex, 1);
         let productsJSON = JSON.stringify(products);
         fs.writeFileSync(productsFilePath, productsJSON);
+        res.send(products);
+    },
+    tryDB: async function(req, res){
+        let products = await db.Product.findAll();
         res.send(products);
     }
 }
