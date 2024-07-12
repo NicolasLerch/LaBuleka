@@ -120,5 +120,13 @@
         "img": "product-1716091336380.JPG",
         "name": "Cerveza",
         "price": "1500"
+    },
+    {
+        "available": "1",
+        "category": "",
+        "img": "default.avif",
+        "name": "Prueba",
+        "price": "5555",
+        "stock": "5"
     }
 ]

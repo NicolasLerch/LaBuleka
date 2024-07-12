@@ -7,19 +7,15 @@ const productsFilePath = path.join(__dirname, '../models/products.json');
 const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
 
 const controller = {
-    getAll : (req, res) => {
-        res.render('allProducts', {productos: productos})
+    getAll : async (req, res) => {
+        let products = await db.Product.findAll();
+        res.render('allProducts', {productos: products})
     },
     create : function(req, res){
         res.render('newProduct');
     },
-    save: function(req, res){
-        let maxId = 0;
-        for (const obj of products) {
-            if (obj.id && obj.id > maxId) {
-                maxId = obj.id;
-            }
-        }
+    save: async function(req, res){
+        
 
         let mainImage = "";
         if(!req.file || req.file == undefined){
@@ -29,24 +25,33 @@ const controller = {
         }
 
         const newProduct = {
-            id: maxId + 1,
             name: req.body.name,
-            img: mainImage,
+            image: mainImage,
             price: req.body.price,
             category: req.body.category,
-            available: req.body.available
+            available: req.body.available,
+            stock: req.body.stock
         }
-        console.log(newProduct);
-
-        products.push(newProduct);
-        let productsJSON = JSON.stringify(products);
-        fs.writeFileSync(productsFilePath, productsJSON);
+       
+        try {
+            await db.Product.create({
+                name: req.body.name,
+            image: mainImage,
+            price: req.body.price,
+            category: req.body.category,
+            available: req.body.available,
+            stock: req.body.stock
+            });
+        } catch (error) {
+            console.log(error);
+        }
 
         res.redirect("/products")
     },
 
-    productsList : function(req, res){
-        res.render("productsList", {productos})
+    productsList : async function(req, res){
+        let products = await db.Product.findAll();
+        res.render("productsList", {productos : products})
     },
 
     edit: function(req, res){
