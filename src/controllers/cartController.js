@@ -12,55 +12,72 @@ const controller = {
 
     // cart: JSON.parse(fs.readFileSync(cartFilePath, 'utf-8')),
     getBill: function(req, res){
-        let cartPath = path.join(__dirname, '../models/'+req.session.userLogged.cart+'.json');
-        let billTotal = 0;
+        let cartPath = path.join(__dirname, '../models/carts/'+req.session.userLogged.cart+'.json');
+        let billPath = path.join(__dirname, '../models/bills/bill'+req.session.userLogged.cart+'.json');
+        let billTotal = 0;       
 
         let cart = JSON.parse(fs.readFileSync(cartPath, 'utf-8'));
+        let bills = JSON.parse(fs.readFileSync(billPath, 'utf-8'))
+
+        let maxId = 0;
+        for (const obj of bills) {
+            if (obj.id && obj.id > maxId) {
+                maxId = obj.id;
+            }
+        }  
 
         for(let i = 0; i < cart.length; i++){
             billTotal += parseInt(cart[i].subtotal);
         }
-        let bill = {
+
+        let buy = {
+            id: maxId +1,
             count: cart.length,
             subtotal: billTotal,
             total: billTotal,
             discount: 0,
             date: new Date()
         }
-        let billJSON = JSON.stringify(bill);
+        let buyJSON = JSON.stringify(buy);
        
-        return billJSON;
+        return buyJSON;
         
     },
 
     emptyCart: function(req, res){
-        fs.writeFileSync(cartFilePath, "[]");
-        fs.writeFileSync(billFilePath, "[]");
+        let cartPath = path.join(__dirname, '../models/carts/'+req.session.userLogged.cart+'.json');
+        fs.writeFileSync(cartPath, "[]");
         res.redirect("/products");
     },
 
     getCart: function(req, res){
         controller.updateBill(req, res);
-        let billPath = path.join(__dirname, '../models/bill'+req.session.userLogged.cart+'.json');
-        let cartPath = path.join(__dirname, '../models/'+req.session.userLogged.cart+'.json');
-        let finalBill = JSON.parse(fs.readFileSync(billPath, 'utf-8'));
-        let cart = JSON.parse(fs.readFileSync(cartPath, 'utf-8'));
         
+        let userLogged = req.session.userLogged;
+        let billPath = path.join(__dirname, '../models/bills/bill'+req.session.userLogged.cart+'.json');
+        let cartPath = path.join(__dirname, '../models/carts/'+req.session.userLogged.cart+'.json');
+        if (!fs.existsSync(cartPath)) {
+            fs.writeFileSync(cartPath, '[]');
+        }
+        let bill = JSON.parse(fs.readFileSync(billPath, 'utf-8'));
+        let cart = JSON.parse(fs.readFileSync(cartPath, 'utf-8'));
+
+        let finalBill = bill[bill.length -1]
+        console.log(finalBill);
+        
+
         res.render('cart', {cart: cart, bill: finalBill});
     },
 
     updateBill : (req, res) =>{
-        let bill = controller.getBill(req, res);
-        let billPath = path.join(__dirname, '../models/bill'+req.session.userLogged.cart+'.json');
-        if (!fs.existsSync(billPath)) {
-            fs.writeFileSync(billPath, '[]');
+        if (!fs.existsSync(path.join(__dirname, '../models/bills/bill'+req.session.userLogged.cart+'.json'))) {
+            fs.writeFileSync(path.join(__dirname, '../models/bills/bill'+req.session.userLogged.cart+'.json'), '[]');
         }
-
-        fs.writeFileSync(billPath, bill);
     },
 
     addToCart: function(req, res){
-        let cartPath = path.join(__dirname, '../models/'+req.session.userLogged.cart+'.json');
+        // let thUser = req.session.userLogged;
+        let cartPath = path.join(__dirname, '../models/carts/'+req.session.userLogged.cart+'.json');
         if (!fs.existsSync(cartPath)) {
             fs.writeFileSync(cartPath, '[]');
         }
@@ -91,17 +108,37 @@ const controller = {
         cart.push(product);
         let cartJSON = JSON.stringify(cart);
         fs.writeFileSync(cartPath, cartJSON);
-        controller.updateBill();
+        controller.updateBill(req, res);
         res.redirect('/products');
     },
 
     deleteFromCart: function(req, res){
-        let cart = JSON.parse(fs.readFileSync(cartFilePath, 'utf-8'));
+        let cartPath = path.join(__dirname, '../models/carts/'+req.session.userLogged.cart+'.json');
+        let cart = JSON.parse(fs.readFileSync(cartPath, 'utf-8'));
         let productToDelete = cart.find(product => product.id == req.params.id)
         let productIndex = cart.indexOf(productToDelete)
         cart.splice(productIndex, 1);
-        fs.writeFileSync(cartFilePath, JSON.stringify(cart));
+        fs.writeFileSync(cartPath, JSON.stringify(cart));
         res.redirect('/cart')
+    },
+
+    checkout: function(req, res){
+        let bill = JSON.parse(controller.getBill(req, res));
+        let buysPath =  path.join(__dirname, '../models/bills/bill'+req.session.userLogged.cart+'.json');
+        let cartPath = path.join(__dirname, '../models/carts/'+req.session.userLogged.cart+'.json');
+        cart = JSON.parse(fs.readFileSync(cartPath, 'utf-8'));
+
+        console.log(bill);
+
+        let buy = {
+            ...bill,
+            detalle: cart
+        }
+        let buys = JSON.parse(fs.readFileSync(buysPath, 'utf-8'))
+        buys.push(buy);
+        fs.writeFileSync(buysPath, JSON.stringify(buys))
+        fs.writeFileSync(cartPath, "[]");
+        res.redirect('/users/profile')
     }
 }
 

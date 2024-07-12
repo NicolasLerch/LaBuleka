@@ -17,6 +17,7 @@
 form{
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
 
 form input{
@@ -48,4 +49,10 @@ form button:hover{
 
 .registerForm{
     width: 80% !important;
+}
+
+@media (max-width: 700px){
+    .register-container{
+        width: 90%;
+    }
 }

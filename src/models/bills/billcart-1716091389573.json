@@ -1,0 +1,101 @@
+[
+    {
+        "id": 1,
+        "date": "2024-05-23T15:24:48.609Z",
+        "count": 1,
+        "total": 2400,
+        "detalle": [
+            {
+                "id": 2,
+                "name": "Porotos negros",
+                "price": 1200,
+                "quantity": "2",
+                "subtotal": 2400
+            }
+        ],
+        "subtotal": 2400,
+        "discount": 0
+    },
+    {
+        "id": 2,
+        "date": "2024-05-23T15:25:15.392Z",
+        "count": 1,
+        "total": 1300,
+        "detalle": [
+            {
+                "id": 1,
+                "name": "Tomates",
+                "price": 1300,
+                "quantity": 1,
+                "subtotal": 1300
+            }
+        ],
+        "subtotal": 1300,
+        "discount": 0
+    },
+    {
+        "id": 3,
+        "date": "2024-05-23T15:26:10.003Z",
+        "count": 2,
+        "total": 2300,
+        "detalle": [
+            {
+                "id": 1,
+                "name": "Tomates",
+                "price": 1300,
+                "quantity": 1,
+                "subtotal": 1300
+            },
+            {
+                "id": 2,
+                "name": "Lechugas",
+                "price": 1000,
+                "quantity": 1,
+                "subtotal": 1000
+            }
+        ],
+        "subtotal": 2300,
+        "discount": 0
+    },
+    {
+        "id": 4,
+        "date": "2024-05-23T15:26:43.992Z",
+        "count": 1,
+        "total": 800,
+        "detalle": [
+            {
+                "id": 1,
+                "name": "Arroz blanco",
+                "price": 800,
+                "quantity": 1,
+                "subtotal": 800
+            }
+        ],
+        "subtotal": 800,
+        "discount": 0
+    },
+    {
+        "id": 5,
+        "date": "2024-05-23T15:28:02.021Z",
+        "count": 2,
+        "total": 4200,
+        "detalle": [
+            {
+                "id": 1,
+                "name": "Cerveza",
+                "price": 1500,
+                "quantity": "2",
+                "subtotal": 3000
+            },
+            {
+                "id": 2,
+                "name": "Carbon",
+                "price": 1200,
+                "quantity": 1,
+                "subtotal": 1200
+            }
+        ],
+        "subtotal": 4200,
+        "discount": 0
+    }
+]

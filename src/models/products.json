@@ -1,12 +1,12 @@
 [
     {
+        "available": "true",
+        "category": "fruits",
         "id": "1",
         "img": "product-1715820862120.jpg",
         "name": "Manzanas Verdes",
         "price": "1200",
-        "stock": "50",
-        "category": "fruits",
-        "available": "true"
+        "stock": "50"
     },
     {
         "id": 2,
@@ -27,74 +27,98 @@
         "price": 1000
     },
     {
-        "id": 6,
-        "img": "default.avif",
+        "available": "true",
+        "category": "vegetables",
+        "id": "6",
+        "img": "product-1716503829012.webp",
         "name": "Pepinos",
-        "price": 1400
+        "price": "1400",
+        "stock": "20"
     },
     {
-        "id": 7,
-        "img": "default.avif",
-        "name": "Ajos",
-        "price": 800
+        "available": "true",
+        "category": "",
+        "id": "7",
+        "img": "product-1716503872096.jpg",
+        "name": "Ajo",
+        "price": "800",
+        "stock": "20"
     },
     {
-        "id": 8,
-        "img": "default.avif",
+        "available": "true",
+        "category": "",
+        "id": "8",
+        "img": "product-1716503919638.avif",
         "name": "Apio",
-        "price": 950
+        "price": "950",
+        "stock": "23"
     },
     {
-        "id": 9,
-        "img": "default.avif",
+        "available": "true",
+        "category": "",
+        "id": "9",
+        "img": "product-1716503968548.avif",
         "name": "Limones",
-        "price": 1450
+        "price": "1450",
+        "stock": "30"
     },
     {
-        "id": 10,
-        "img": "default.avif",
+        "available": "true",
+        "category": "",
+        "id": "10",
+        "img": "product-1716504031622.webp",
         "name": "Repollo",
-        "price": 1200
+        "price": "1200",
+        "stock": ""
     },
     {
-        "id": 11,
-        "img": "default.avif",
+        "available": "true",
+        "category": "",
+        "id": "11",
+        "img": "product-1716504077268.jpg",
         "name": "Carbon",
         "price": "1200",
-        "category": "other",
-        "available": "true"
+        "stock": "30"
     },
     {
+        "available": "true",
+        "category": "",
         "id": "12",
-        "img": "default.avif",
+        "img": "product-1716504113122.webp",
         "name": "Porotos negros",
         "price": "1200",
-        "stock": "23",
-        "category": "legumbres",
-        "available": "true"
+        "stock": "23"
     },
     {
+        "available": "true",
+        "category": "other",
         "id": "13",
         "img": "product-1715870090106.webp",
         "name": "Arroz blanco",
         "price": "800",
-        "stock": "20",
-        "category": "other",
-        "available": "true"
+        "stock": "20"
     },
     {
+        "available": "true",
+        "category": "vegetables",
         "id": 14,
         "img": "product-1715742073239.jpg",
         "name": "Papa",
-        "price": "1500",
-        "category": "vegetables",
-        "available": "true"
+        "price": "1500"
     },
     {
+        "category": "vegetables",
         "id": 15,
         "img": "product-1715742158523.webp",
         "name": "Acelga",
-        "price": "1350",
-        "category": "vegetables"
+        "price": "1350"
+    },
+    {
+        "available": "true",
+        "category": "other",
+        "id": 16,
+        "img": "product-1716091336380.JPG",
+        "name": "Cerveza",
+        "price": "1500"
     }
 ]

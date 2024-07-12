@@ -27,6 +27,10 @@ const mainController = {
 
     check: function(req, res){
         res.send(req.session.userLogged)
+    },
+
+    contact: function(req, res){
+        res.render('contact')
     }
 }
 
