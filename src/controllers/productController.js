@@ -54,12 +54,14 @@ const controller = {
         res.render("productsList", {productos : products})
     },
 
-    edit: function(req, res){
-        let productToEdit = products.find(product => product.id == req.params.id);
-        let productIndex = products.indexOf(productToEdit);
-        console.log(productToEdit);
+    edit: async function(req, res){
 
-        let mainImage = "";
+            let productToEdit = await db.Product.findByPk(req.params.id);
+            if (!productToEdit) {
+                res.send('No existe el producto');
+            }
+
+        let mainImage;
 
         if(!req.file || req.file == undefined || req.file == "default.avif"){
             mainImage = productToEdit.img;
@@ -67,18 +69,19 @@ const controller = {
             mainImage = req.file.filename;
         }
 
-        products[productIndex] = {
-            id: req.params.id,
+       try{
+           await db.Product.update({
             name: req.body.name,
-            img: mainImage,
+            image: mainImage,
             price: req.body.price,
             category: req.body.category,
-            stock: req.body.stock,
-            available: req.body.available
-        }
-
-        let productsJSON = JSON.stringify(products);
-        fs.writeFileSync(productsFilePath, productsJSON);
+            available: req.body.available == null ? 1 : req.body.available,
+            stock: req.body.stock
+           }, {where : { id : req.params.id}})
+       } catch(error){
+           console.log(error);
+           res.send('Ocurrio un error inesperado. No se pudo modificar el producto. Intente nuevamente');
+       }
 
         res.redirect("/products/all");
     },
