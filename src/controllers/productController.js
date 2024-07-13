@@ -85,14 +85,14 @@ const controller = {
 
         res.redirect("/products/all");
     },
-    delete: function(req, res){
-        let productToDelete = products.find(product => product.id == req.params.id);
-        let productIndex = products.indexOf(productToDelete);
-        console.log(productToDelete);
-        products.splice(productIndex, 1);
-        let productsJSON = JSON.stringify(products);
-        fs.writeFileSync(productsFilePath, productsJSON);
-        res.send(products);
+    delete: async function(req, res){
+        let productToDelete = await db.Product.findByPk(req.params.id)
+        if(!productToDelete){
+            res.send('No existe el producto');
+        }
+
+        await db.Product.destroy({where: {id: req.params.id}});
+        res.redirect("/products/all");
     },
     tryDB: async function(req, res){
         let products = await db.Product.findAll();
