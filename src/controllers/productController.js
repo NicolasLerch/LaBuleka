@@ -1,10 +1,6 @@
-let productos = require('../models/products');
 let path = require('path');
 const fs = require('fs');
 const db = require('../data/models');
-
-const productsFilePath = path.join(__dirname, '../models/products.json');
-const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
 
 const controller = {
     getAll : async (req, res) => {

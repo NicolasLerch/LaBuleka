@@ -1,1 +1,82 @@
-[{"id":7,"name":"Joaco","mail":"joacadas@hotmail.com","cart":"cart-Fri May 17 2024 15:13:50 GMT-0300 (hora estándar de Argentina)","lastName":"Caniadas","password":"$2a$10$exL54NHIBZYJTnnBJ1kiHeUiGPu1WVa/7gl8n/MfU.luELez0Uaie"},{"id":8,"rol":"admin","name":"Florencia","mail":"florlerch@mail.com","cart":"cart-1715969716891","lastName":"Lerch","password":"$2a$10$CmSHJtGPOKiRfvuyqIwI5e2THSD.mAOGhUs81zF0TEDutFOCV3g4."},{"id":9,"rol":"client","name":"Rayitas","mail":"rayitas@mail.com","cart":"cart-1716050671192","lastName":"LaGata","password":"$2a$10$LEaPQwpaHGLTsOUSThp/yeLnzHlvkczH8ol6Xxv7H51tafGSL1Uie"},{"id":10,"rol":"client","name":"Juli","mail":"jumartin@mail.com","cart":"cart-1716091389573","lastName":"Martin","password":"$2a$10$UkHcJ41fam.3x.hC7HWbJ.pOLVh49usSdGQA3JxtXDQ/kX8J3u/ze"},{"id":11,"rol":"client","name":"Nicolas","mail":"lerchnicolas@hotmail.com","cart":"cart-1716488562778","lastName":"Lerch","password":"$2a$10$lTdcqraty9JgqMnfCxVdKOqHXOVUnTNQPz0ytKWTqwkL.rfWCDKJ."},{"id":12,"rol":"client","name":"Pompon","mail":"Pompon@mail.com","cart":"cart-1716504987607","lastName":"Lagata","password":"$2a$10$eiROvvadr67CB1MXD8rAh.7DKfxOjdPf4wSvZ/yXliEZleWWupcbm"},{"id":15,"rol":"client","name":"Pepe","mail":"pepe@prueba.com","cart":"cart-1716507999255","lastName":"Grillo","password":"$2a$10$nHn3sdpKNL/HAZUJpd.7Ne/GoBPcGtVOzsNjhEnAUASOPLbcdaDAW"},{"id":16,"rol":"client","name":"RoLaProfe","mail":"profe@mail.com","cart":"cart-1716508368081","lastName":"SeVa","password":"$2a$10$3w4I/yCbdmRtEzXH8baUT.wFDSJoIdrXHK0OEEQDl3Nt3qnBXlY3m"},{"id":17,"name":"Florencia","lastName":"Lerch","mail":"florlerch6@hotmail.com","password":"$2a$10$vPCOH0lQh5c1unaQcVBL2OXZqPLiUFcfxJAGcKj2bkILSv6c.CfM2","cart":"cart-1716512137322","rol":"client"}]
+[
+    {
+        "cart": "cart-Fri May 17 2024 15:13:50 GMT-0300 (hora estándar de Argentina)",
+        "id": 7,
+        "lastName": "Caniadas",
+        "mail": "joacadas@hotmail.com",
+        "name": "Joaco",
+        "password": "$2a$10$exL54NHIBZYJTnnBJ1kiHeUiGPu1WVa/7gl8n/MfU.luELez0Uaie"
+    },
+    {
+        "cart": "cart-1715969716891",
+        "id": 8,
+        "lastName": "Lerch",
+        "mail": "florlerch@mail.com",
+        "name": "Florencia",
+        "password": "$2a$10$CmSHJtGPOKiRfvuyqIwI5e2THSD.mAOGhUs81zF0TEDutFOCV3g4.",
+        "rol": "admin"
+    },
+    {
+        "cart": "cart-1716050671192",
+        "id": 9,
+        "lastName": "LaGata",
+        "mail": "rayitas@mail.com",
+        "name": "Rayitas",
+        "password": "$2a$10$LEaPQwpaHGLTsOUSThp/yeLnzHlvkczH8ol6Xxv7H51tafGSL1Uie",
+        "rol": "client"
+    },
+    {
+        "cart": "cart-1716091389573",
+        "id": 10,
+        "lastName": "Martin",
+        "mail": "jumartin@mail.com",
+        "name": "Juli",
+        "password": "$2a$10$UkHcJ41fam.3x.hC7HWbJ.pOLVh49usSdGQA3JxtXDQ/kX8J3u/ze",
+        "rol": "client"
+    },
+    {
+        "cart": "cart-1716488562778",
+        "id": 11,
+        "lastName": "Lerch",
+        "mail": "lerchnicolas@hotmail.com",
+        "name": "Nicolas",
+        "password": "$2a$10$lTdcqraty9JgqMnfCxVdKOqHXOVUnTNQPz0ytKWTqwkL.rfWCDKJ.",
+        "rol": "client"
+    },
+    {
+        "cart": "cart-1716504987607",
+        "id": 12,
+        "lastName": "Lagata",
+        "mail": "Pompon@mail.com",
+        "name": "Pompon",
+        "password": "$2a$10$eiROvvadr67CB1MXD8rAh.7DKfxOjdPf4wSvZ/yXliEZleWWupcbm",
+        "rol": "client"
+    },
+    {
+        "cart": "cart-1716507999255",
+        "id": 15,
+        "lastName": "Grillo",
+        "mail": "pepe@prueba.com",
+        "name": "Pepe",
+        "password": "$2a$10$nHn3sdpKNL/HAZUJpd.7Ne/GoBPcGtVOzsNjhEnAUASOPLbcdaDAW",
+        "rol": "client"
+    },
+    {
+        "cart": "cart-1716508368081",
+        "id": 16,
+        "lastName": "SeVa",
+        "mail": "profe@mail.com",
+        "name": "RoLaProfe",
+        "password": "$2a$10$3w4I/yCbdmRtEzXH8baUT.wFDSJoIdrXHK0OEEQDl3Nt3qnBXlY3m",
+        "rol": "client"
+    },
+    {
+        "cart": "cart-1716512137322",
+        "id": 17,
+        "lastName": "Lerch",
+        "mail": "florlerch6@hotmail.com",
+        "name": "Florencia",
+        "password": "$2a$10$vPCOH0lQh5c1unaQcVBL2OXZqPLiUFcfxJAGcKj2bkILSv6c.CfM2",
+        "rol": "client"
+    }
+]

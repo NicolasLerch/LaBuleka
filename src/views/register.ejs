@@ -40,35 +40,6 @@
 
 
     <%-include('./partials/footer.ejs')%>
-    <script>
-        document.querySelector('form').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const formData = new FormData(event.target);
-            const data = Object.fromEntries(formData);
-
-            fetch('/register', { // Asegúrate de que la ruta coincida con la definida en tu backend
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            })
-            .then(response => response.json())
-            .then(result => {
-                if (result.error) {
-                    alert(result.error);
-                } else {
-                    // Manejar el registro exitoso, quizás redirigir o mostrar un mensaje de éxito
-                    console.log('Usuario registrado:', result);
-                    alert("Usuario creado con éxito. Sera redirigido al login.");
-                    window.location.href = '/login';
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-        });
-    </script>
     
 </body>
 </html>

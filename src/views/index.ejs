@@ -56,10 +56,10 @@
     <h2>PRODUCTOS DESTACADOS</h2>
     <main>
         <section>
-            <%for (i=0; i<4; i++){%>
+            <%for (i=0; i<productos.length; i++){%>
             <article>
                 <div class="img_container">
-                    <img src= "images/products/<%= productos[i].image%>" alt="<%= productos[i].nombre%>">
+                    <img src= "images/products/<%= productos[i].image%>" alt="<%= productos[i].name%>">
                 </div>
                 <div class="product_footer">
                     <p><%= productos[i].name%></p>
