@@ -40,7 +40,7 @@ const controller = {
 
     try {
         userToLogin = await db.User.findOne({ where: { email: mail } });
-        console.log(userToLogin);
+        
     } catch (error) {
         console.log(error);
         res.send("No se encuentra el usuario");
@@ -63,10 +63,9 @@ const controller = {
     res.render("userProfile", { buys: buys });
   },
 
-  edit: function (req, res) {
-    let userToEdit = users.find((user) => user.id == req.session.userLogged.id);
-    let userIndex = users.findIndex((user) => user.id == userToEdit.id);
-
+  edit: async function (req, res) {
+    let buys = []
+    let userToEdit = await db.User.findOne({ where: { id: req.session.userLogged.id } });
     let userPassword = userToEdit.password;
     let equalPass = true;
 
@@ -81,21 +80,26 @@ const controller = {
     }
 
     if (equalPass) {
-      let userEdited = {
-        id: userToEdit.id,
-        name: req.body.name,
-        lastName: req.body.lastName,
-        mail: req.body.email,
-        password: userPassword,
-        cart: userToEdit.cart,
-        rol: userToEdit.rol,
-      };
-      users[userIndex] = userEdited;
-      req.session.userLogged = userEdited;
+      try{
+        await db.User.update({
+          ...userToEdit,
+          name: req.body.name,
+          last_name: req.body.lastName,
+          email: req.body.email,
+          password: userPassword,
+          rol: userToEdit.rol
+        }, { where: { id: req.session.userLogged.id } });
 
-      let usersJSON = JSON.stringify(users);
-      fs.writeFileSync(usersFilePath, usersJSON);
-      res.redirect("/users/profile");
+        let userEdited = await db.User.findOne({ where: { id: req.session.userLogged.id } });
+        req.session.userLogged = userEdited;
+        // console.log(req.session.userLogged);
+        
+        return res.redirect('/users/profile');
+      } catch(error){
+        console.log(error);
+        return res.send("Ocurrio un error inesperado. Intente nuevamente.");
+      }
+      
     } else {
       res.status(400).json({ error: "Las contraseñas no coinciden." });
     }
@@ -112,25 +116,9 @@ const controller = {
     }
 
     try {
-      let userIndex = users.findIndex((user) => user.id == userId);
-      if (userIndex === -1) {
-        throw new Error("Usuario no encontrado");
-      }
-      users.splice(userIndex, 1);
-
-      // Guardar el archivo JSON actualizado
-      await new Promise((resolve, reject) => {
-        fs.writeFile(usersFilePath, JSON.stringify(users, null, 2), (err) => {
-          if (err) {
-            return reject("Error al guardar los datos");
-          }
-          resolve();
-        });
-      });
-
+      await db.User.destroy({ where: { id: userId } });
       req.session.destroy();
-
-      res.json({ success: true });
+      return res.json({ success: true });
     } catch (error) {
       console.error(error);
       res.json({ success: false, message: "Error al eliminar el usuario." });
