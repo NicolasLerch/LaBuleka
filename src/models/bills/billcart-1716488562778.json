@@ -1,0 +1,33 @@
+[
+    {
+        "count": 3,
+        "date": "2024-05-24T00:25:09.868Z",
+        "detalle": [
+            {
+                "id": 1,
+                "name": "Zanahorias",
+                "price": 2100,
+                "quantity": 1,
+                "subtotal": 2100
+            },
+            {
+                "id": 2,
+                "name": "Tomates",
+                "price": 1300,
+                "quantity": "2",
+                "subtotal": 2600
+            },
+            {
+                "id": 3,
+                "name": "Limones",
+                "price": 1450,
+                "quantity": "2",
+                "subtotal": 2900
+            }
+        ],
+        "discount": 0,
+        "id": 1,
+        "subtotal": 7600,
+        "total": 7600
+    }
+]

@@ -25,10 +25,10 @@
             <%for(i=0; i < productos.length; i++){%>
                 <div class="product-container">
                     <p class="name listElement"><%=productos[i].name%></p>
-                    <img class="image listElement" src="/images/products/<%=productos[i].img%>"></p>
+                    <img class="image listElement" src="/images/products/<%=productos[i].image%>"></p>
                     <p class="price listElement">$<%=productos[i].price%></p>
                     <p class="stock listElement"><%=productos[i].stock%></p>
-                    <%if(productos[i].available){%><p class="available listElement">Disponible</p><%}else{%>
+                    <%if(productos[i].available === 1){%><p class="available listElement">Disponible</p><%}else{%>
                     <p class="available">No disponible</p><%}%>
                     <div class="edit-btn-container listElement">
                         <a href="#" class="editButton listElement">Editar</a>
@@ -63,12 +63,12 @@
                 </label>
                 <div class="available-container">
                     <label>
-                        <input type="radio" name="available" value="true">
+                        <input type="radio" name="available" value="1" checked>
                     </label>Producto disponible
                 </div>
                 <div class="available-container">
                     <label>
-                        <input type="radio" name="noAvailable" value="true">
+                        <input type="radio" name="available" value="0">
                     </label>Producto no disponible            
                 </div>
                 

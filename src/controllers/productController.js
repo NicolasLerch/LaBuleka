@@ -1,24 +1,17 @@
-let productos = require('../models/products');
 let path = require('path');
 const fs = require('fs');
-
-const productsFilePath = path.join(__dirname, '../models/products.json');
-const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
+const db = require('../data/models');
 
 const controller = {
-    getAll : (req, res) => {
-        res.render('allProducts', {productos: productos})
+    getAll : async (req, res) => {
+        let products = await db.Product.findAll();
+        res.render('allProducts', {productos: products})
     },
     create : function(req, res){
         res.render('newProduct');
     },
-    save: function(req, res){
-        let maxId = 0;
-        for (const obj of products) {
-            if (obj.id && obj.id > maxId) {
-                maxId = obj.id;
-            }
-        }
+    save: async function(req, res){
+        
 
         let mainImage = "";
         if(!req.file || req.file == undefined){
@@ -28,32 +21,43 @@ const controller = {
         }
 
         const newProduct = {
-            id: maxId + 1,
             name: req.body.name,
-            img: mainImage,
+            image: mainImage,
             price: req.body.price,
             category: req.body.category,
-            available: req.body.available
+            available: req.body.available,
+            stock: req.body.stock
         }
-        console.log(newProduct);
-
-        products.push(newProduct);
-        let productsJSON = JSON.stringify(products);
-        fs.writeFileSync(productsFilePath, productsJSON);
+       
+        try {
+            await db.Product.create({
+                name: req.body.name,
+            image: mainImage,
+            price: req.body.price,
+            category: req.body.category,
+            available: req.body.available,
+            stock: req.body.stock
+            });
+        } catch (error) {
+            console.log(error);
+        }
 
         res.redirect("/products")
     },
 
-    productsList : function(req, res){
-        res.render("productsList", {productos})
+    productsList : async function(req, res){
+        let products = await db.Product.findAll();
+        res.render("productsList", {productos : products})
     },
 
-    edit: function(req, res){
-        let productToEdit = products.find(product => product.id == req.params.id);
-        let productIndex = products.indexOf(productToEdit);
-        console.log(productToEdit);
+    edit: async function(req, res){
 
-        let mainImage = "";
+            let productToEdit = await db.Product.findByPk(req.params.id);
+            if (!productToEdit) {
+                res.send('No existe el producto');
+            }
+
+        let mainImage;
 
         if(!req.file || req.file == undefined || req.file == "default.avif"){
             mainImage = productToEdit.img;
@@ -61,28 +65,33 @@ const controller = {
             mainImage = req.file.filename;
         }
 
-        products[productIndex] = {
-            id: req.params.id,
+       try{
+           await db.Product.update({
             name: req.body.name,
-            img: mainImage,
+            image: mainImage,
             price: req.body.price,
             category: req.body.category,
-            stock: req.body.stock,
-            available: req.body.available
-        }
-
-        let productsJSON = JSON.stringify(products);
-        fs.writeFileSync(productsFilePath, productsJSON);
+            available: req.body.available == null ? 1 : req.body.available,
+            stock: req.body.stock
+           }, {where : { id : req.params.id}})
+       } catch(error){
+           console.log(error);
+           res.send('Ocurrio un error inesperado. No se pudo modificar el producto. Intente nuevamente');
+       }
 
         res.redirect("/products/all");
     },
-    delete: function(req, res){
-        let productToDelete = products.find(product => product.id == req.params.id);
-        let productIndex = products.indexOf(productToDelete);
-        console.log(productToDelete);
-        products.splice(productIndex, 1);
-        let productsJSON = JSON.stringify(products);
-        fs.writeFileSync(productsFilePath, productsJSON);
+    delete: async function(req, res){
+        let productToDelete = await db.Product.findByPk(req.params.id)
+        if(!productToDelete){
+            res.send('No existe el producto');
+        }
+
+        await db.Product.destroy({where: {id: req.params.id}});
+        res.redirect("/products/all");
+    },
+    tryDB: async function(req, res){
+        let products = await db.Product.findAll();
         res.send(products);
     }
 }

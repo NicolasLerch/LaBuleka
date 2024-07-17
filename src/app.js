@@ -4,6 +4,8 @@ const app = express();
 const indexRouter = require('./routes/index.routes')
 const methodOverride = require('method-override');
 const session = require('express-session');
+const sendSessionUser = require('./middlewares/sendSessionUser')
+const sequelize = require("sequelize")
 
 
 app.use(express.urlencoded({extended: false}))
@@ -14,8 +16,11 @@ app.use(express.static('public'));
 app.use(session({secret: "buleka2024"}));
 app.set('view engine', 'ejs');
 app.set('views', './src/views');
+// app.use(sendSessionUser);
 
-app.use('/', indexRouter);
+app.use('/', sendSessionUser, indexRouter);
+
+// sequelize.db.authenticateDB();
 
 app.listen(3000, () => {
     console.log('Servidor corriendo en puerto 3000')

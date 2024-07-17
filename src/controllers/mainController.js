@@ -1,13 +1,16 @@
 let productos = require('../models/products');
 let path = require('path');
 const fs = require('fs');
+const db = require('../data/models');
 
 const productsFilePath = path.join(__dirname, '../models/products.json');
 const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
 
 const mainController = {
-    viewIndex : function (req, res){
-        res.render('index', {productos: productos});
+    viewIndex : async function (req, res){
+        let products = await db.Product.findAll();
+        // res.send(products);
+        res.render('index', {productos: products});
     },
     viewLocal : function (req, res){
         res.render('local');
@@ -27,6 +30,10 @@ const mainController = {
 
     check: function(req, res){
         res.send(req.session.userLogged)
+    },
+
+    contact: function(req, res){
+        res.render('contact')
     }
 }
 

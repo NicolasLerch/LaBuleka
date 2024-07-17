@@ -17,6 +17,9 @@ router.post('/register', userController.create)
 
 router.get('/cart', cartController.getCart);
 router.post('/cart/:id', cartController.addToCart);
+
+
+
 // limpiar el carrito completo
 router.delete('/cart', cartController.emptyCart)
 
@@ -25,6 +28,8 @@ router.delete('/cart/:id', cartController.deleteFromCart)
 
 router.get('/checksession', mainController.check)
 
+router.post('/checkout', cartController.checkout)
 
+router.get('/contact', mainController.contact)
 
 module.exports = router;
