@@ -1,12 +1,19 @@
 document.addEventListener("DOMContentLoaded", function(){
+    
     let buyBtn = this.querySelectorAll(".buy-btn");
     let counter = localStorage.cart ? JSON.parse(localStorage.cart).length : 0;
     let cartCounter = document.querySelector("#cart-count");
     cartCounter.innerText = counter;
+    toastr.options = {
+        closeButton: true,
+        timeOut: 2000,
+        positionClass: "toast-bottom-right"
+    };
     // let cart = []
     buyBtn.forEach((buyBtn, index) => {
         buyBtn.addEventListener('click', (e) => {
             e.preventDefault();
+            toastr.success('Producto agregado al carrito');
             let product = {
                 id: e.target.dataset.id,
                 quantity: 1
