@@ -30,6 +30,7 @@
                 <%}%>
             </ul>
         </nav>
+        
         <%if(user){%>
             <p class="user-name-title">Hola <%=user.name%></p>
             <!-- <a href="/cart"><i class="fa-solid fa-cart-shopping"></i></a>
@@ -37,6 +38,11 @@
             <%}else{%>
         <a class ="user-icon" href="/login"><i class="fa-solid fa-user"></i></a>
         <%}%>
+        <div class="header-cart-container">
+            <a href="/cart"><i class="fa-solid fa-cart-shopping"></i></a>
+            <span id ="cart-count" class="cart-count">0</span>
+        </div>
+        
         
         <div class="search-bar desktop">
             <input type="text" placeholder="Buscar productos">
