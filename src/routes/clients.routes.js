@@ -17,5 +17,7 @@ router.post('/logout', userController.logout)
 
 router.get('/buys', userController.allBuys)
 
+router.get('/order/:id', userController.order)
+
 
 module.exports = router;

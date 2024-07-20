@@ -43,6 +43,8 @@
                     </table>
                     
                 </div>
+
+            
             <%if(user != undefined && cart.length > 0){%>
             <form>
                 <button class="clear-button" type="submit" formaction="/cart?_method=DELETE" formmethod="POST">Limpiar carrito</button>
@@ -55,12 +57,28 @@
         <div class="total-container">
             <h4>Resumen de compra</h4>
             
-            <h4>Descuentos: $</h4>
+            <!-- <h4>Descuentos: $</h4> -->
                     
             
             <h3 class="totalValue"></h3>
-            <form>
-                <button formaction="/checkout" formmethod="POST" class="continue-button" type="submit">Continuar</button>
+            <form id="checkoutForm">
+                <div class="shipping-method-container">
+                    <div class=" col-md-6 mb-4">
+                        <label for="country">Pago</label>
+                        <select class="custom-select d-block w-100" id="paymentMethod" name="paymentMethod"
+                            required="">
+                            <option value="">Elegir...</option>
+                            <option value="Efectivo">Efectivo</option>
+                            <option value="Débito">Tarjeta Débito</option>
+                            <option value="Crédito">Tarjeta Crédito</option>
+                        </select>
+                        <div class="invalid-feedback">
+                            Elija un tipo de envio.
+                        </div>
+    
+                    </div>
+                </div>
+                <button id="checkoutCart" formaction="/checkout" formmethod="POST" class="continue-button" type="submit">Continuar al pago</button>
             </form>
             
             

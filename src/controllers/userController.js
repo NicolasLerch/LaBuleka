@@ -138,6 +138,22 @@ const controller = {
     let buys = JSON.parse(fs.readFileSync(buysPath, "utf-8"));
     res.render("allBuys", { buys });
   },
+
+  order: async function(req, res){
+    try{
+      let order = await db.Order.findByPk(req.params.id)
+      if(!order){
+        res.send('No existe el pedido')
+      }
+
+      res.render('order', {order: order})
+    } catch(error){
+      console.log(error)
+      res.send("ocurrio un error inesperado")
+    }
+    
+
+  }
 };
 
 module.exports = controller;
