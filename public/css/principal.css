@@ -130,6 +130,20 @@ a.user-icon{
 
 }
 
+.cart-count{
+    position: relative;
+    top: -14px;
+    left: -10px;
+    z-index: 1;
+    color: white;
+    font-size: 12px;
+    height: 3px;
+    width: 3px;
+    background-color: red;
+    border-radius: 50%;
+    padding: 5px 10px;
+}
+
 
 /* Media queries mobile */
 @media (max-width: 459px){

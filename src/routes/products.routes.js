@@ -31,6 +31,6 @@ router.put('/:id/edit',upload.single("product-img"), productController.edit)
 // borrar producto
 router.delete('/:id/delete', productController.delete)
 
-router.get('/tryDB', productController.tryDB)
+// router.get('/tryDB', productController.tryDB)
 
 module.exports = router;
