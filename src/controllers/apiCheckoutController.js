@@ -17,9 +17,9 @@ let controller = {
         }
         
       );
-    //   console.log(order);
+      console.log(order);
       res.json({success: true, status: 200, order: order})
-      location.href = "/";
+      
     } catch (error) {
       console.log(error);
       return res.send("Ocurrio un error inesperado. Intente nuevamente.");

@@ -139,13 +139,24 @@ const controller = {
     res.render("allBuys", { buys });
   },
 
-  order: async function(req, res){
+  getOrder: async function(req, res){
     try{
-      let order = await db.Order.findByPk(req.params.id)
+      let order = await db.Order.findOne({
+        where: { id: req.params.id },
+        include: [
+          {
+            model: db.OrderProduct,
+            as: 'orderProducts',
+          }
+        ]
+      })
+      // let orderProducts = await db.OrderProduct.findAll({where: {orderId: req.params.id}})
+      console.log(order.orderProducts[1].name);
+      // res.send(order)
+
       if(!order){
         res.send('No existe el pedido')
       }
-
       res.render('order', {order: order})
     } catch(error){
       console.log(error)

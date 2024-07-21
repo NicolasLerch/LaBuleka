@@ -12,14 +12,16 @@
 
     <div class="order-container">
         <p>Fecha: <%=order.date%></p>
+        <%for (i=0; i < order.orderProducts.length; i++){%>
+            <div class="order-detail">
+                <p>Nombre: <%=order.orderProducts[i].name%></p>
+                <p>Cantidad: <%=order.orderProducts[i].quantity%></p>
+                <p>Precio: $<%=order.orderProducts[i].price%></p>
+            </div>
+        <%}%>
     </div>
-    
-
-
-
-
-
-
+   
+    <p>Total: $<%=order.total%></p>
 
     <%-include('./partials/footer.ejs')%>
 </body>

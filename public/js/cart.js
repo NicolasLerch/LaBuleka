@@ -97,7 +97,8 @@ document.addEventListener("DOMContentLoaded", function () {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
+        location.href = "/";
       })
       .catch((err) => {
         console.log(err);
