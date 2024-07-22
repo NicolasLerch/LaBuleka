@@ -1,0 +1,21 @@
+.order-container{
+    margin-top: 30px;
+    display: flex;
+    text-align: left;
+    margin-left: 20px;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.order-container p{
+    margin: 5px;
+}
+
+.product-detail{
+    text-align: left;
+    margin-top: 10px;
+    border-bottom: 1px solid grey;
+}
+.product-detail p{
+    margin: 3px;
+}

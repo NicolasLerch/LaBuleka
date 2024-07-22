@@ -30,6 +30,10 @@ module.exports = function(sequelize, DataTypes) {
         name:{
             type: DataTypes.STRING(70),
             allowNull: false
+        }, 
+        subtotal: {
+            type: DataTypes.INTEGER,
+            allowNull: false
         }
     }
     let config={

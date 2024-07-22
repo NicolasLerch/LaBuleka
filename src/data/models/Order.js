@@ -21,8 +21,12 @@ module.exports = function(sequelize, DataTypes){
         },
         date :{
             type: DataTypes.DATE,
+            allowNull: false         
+        },
+        time: {
+            type: DataTypes.TIME,
             allowNull: false,
-            defaultValue: DataTypes.NOW
+            // defaultValue: DataTypes.NOW
         }
     }
     let config = {

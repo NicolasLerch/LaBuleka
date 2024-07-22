@@ -157,6 +157,11 @@ const controller = {
       if(!order){
         res.send('No existe el pedido')
       }
+
+      if(order.userId != req.session.userLogged.id){
+        res.send('Este pedido no es tuyo.')
+      }
+
       res.render('order', {order: order})
     } catch(error){
       console.log(error)
