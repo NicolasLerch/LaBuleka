@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%-include('./partials/head.ejs')%>
     <link rel="stylesheet" href="..\css\principal.css">
     <link href="/css/slideGallery.css" rel="stylesheet"/>
     <script src="js/main.js"></script>
@@ -17,7 +18,6 @@
 </head>
 <body>
     <%-include('./partials/header.ejs')%>
-    <!-- Div contenedor de imagenes en slideShow -->
     
     <h2>PRODUCTOS DESTACADOS</h2>
     <a class="cartLink" href="/cart">Ver carrito</a>
@@ -26,31 +26,19 @@
             <%for (i=0; i<productos.length; i++){%>
             <article>
                 <div class="img_container">
-                    <img src= "/images/products/<%= productos[i].image%>" alt="<%= productos[i].nombre%>">
+                    <img src= "images/products/<%= productos[i].image%>" alt="<%= productos[i].name%>">
                 </div>
                 <div class="product_footer">
                     <p><%= productos[i].name%></p>
                     <p>$<%= productos[i].price%></p>
                 </div>
                 <div class="add-cart">
-                    <%if(user){%>
-                        <form>
-                            <label for="quantity" >Cantidad</label>
-                            <input class="quantityInput" name="quantity" type="number">
-                            <button type="submit" formaction="/cart/<%= productos[i].id%>" formmethod="POST">Agregar al carrito</button>
-                        </form>
-                        <%}else{%>
-                            <form>
-                                <button type="submit" formaction="/login" formmethod="GET">Agregar al carrito</button>
-                            </form>
-                    <%}%>
+                            <button class="buy-btn" type="submit" data-id="<%= productos[i].id%>" formaction="/cart/<%= productos[i].id%>" formmethod="POST">Agregar al carrito</button>
                 </div>
             </article>
             <%}%>
         </section>
     </main>
     <%-include('./partials/footer')%>
-    
-
 </body>
 </html>

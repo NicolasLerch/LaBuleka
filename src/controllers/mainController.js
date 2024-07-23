@@ -3,20 +3,24 @@ let path = require('path');
 const fs = require('fs');
 const db = require('../data/models');
 
-const productsFilePath = path.join(__dirname, '../models/products.json');
-const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
 
 const mainController = {
     viewIndex : async function (req, res){
         let products = await db.Product.findAll();
-        // res.send(products);
         res.render('index', {productos: products});
     },
     viewLocal : function (req, res){
         res.render('local');
     },
-    viewTienda : function(req, res){
-        res.render('tienda', {productos: productos});
+    viewTienda : async function(req, res){
+        try{
+            let products = await db.Product.findAll();
+            res.render('tienda', {productos: products});
+        } catch(error){
+            console.log(error);
+            res.send('ocurrio un error inesperado');
+        }
+        
     },
     viewProducts : function(req, res){
         res.render('index', {productos: productos.getAll()})

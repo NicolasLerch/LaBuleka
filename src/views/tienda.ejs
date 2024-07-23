@@ -37,22 +37,16 @@
             <%for (i=0; i<productos.length; i++){%>
                 <article>
                     <div class="img_container">
-                        <img src= "/images/products/<%= productos[i].img%>" alt="<%= productos[i].nombre%>">
+                        <img src= "images/products/<%= productos[i].image%>" alt="<%= productos[i].nombre%>">
                     </div>
                     <div class="product_footer">
                         <p><%= productos[i].name%></p>
                         <p>$<%= productos[i].price%></p>
                     </div>
-                    <div class="add-cart">
-                        <%if(user){%>
+                    <div class="add-cart">                        
                             <form>
-                                <button type="submit" formaction="/cart/<%= productos[i].id%>" formmethod="POST">Agregar al carrito</button>
-                            </form>
-                            <%}else{%>
-                                <form>
-                                    <button type="submit" formaction="/login" formmethod="GET">Agregar al carrito</button>
-                                </form>
-                        <%}%>
+                                <button class="buy-btn" type="submit" data-id="<%= productos[i].id%>">Agregar al carrito</button>
+                            </form>                            
                     </div>
                 </article>
                 <%}%>

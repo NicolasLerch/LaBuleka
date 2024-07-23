@@ -53,7 +53,7 @@
             <span class="dot" onclick="currentSlide(4)"></span>
         </div>
     </div>
-    <h2>PRODUCTOS DESTACADOS9</h2>
+    <h2>PRODUCTOS DESTACADOS</h2>
     <main>
         <section>
             <%for (i=0; i<productos.length; i++){%>
@@ -68,7 +68,7 @@
                 <div class="add-cart">
                     <%if(user){%>
                         <form>
-                            <button class="buy-btn" type="submit" data-id="<%= productos[i].id%>" formaction="/cart/<%= productos[i].id%>" formmethod="POST">Agregar al carrito9</button>
+                            <button class="buy-btn" type="submit" data-id="<%= productos[i].id%>" formaction="/cart/<%= productos[i].id%>" formmethod="POST">Agregar al carrito</button>
                         </form>
                         <%}else{%>
                             <form>
