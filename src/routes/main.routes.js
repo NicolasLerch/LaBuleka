@@ -22,4 +22,6 @@ router.get('/cart', authMiddleware, cartController.getCart);
 
 router.get('/contact', mainController.contact)
 
+router.get('/search', mainController.search)
+
 module.exports = router;

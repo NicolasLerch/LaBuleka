@@ -5,9 +5,6 @@ const bcryptjs = require("bcryptjs");
 const { log } = require("console");
 const db = require("../data/models");
 
-let usersFilePath = path.join(__dirname, "../models/users.json");
-let users = JSON.parse(fs.readFileSync(usersFilePath, "utf-8"));
-
 const controller = {
   create: async function (req, res) {
     let hashedPassword = bcryptjs.hashSync(req.body.password, 10);
@@ -58,9 +55,15 @@ const controller = {
       res.status(400).json({ error: "Usuario no encontrado." });
     }
   },
-  profile: function (req, res) {
-    let buys = []
-    res.render("userProfile", { buys: buys });
+  profile: async function (req, res) {
+    try{
+      let orders = await db.Order.findAll({where: {userId : req.session.userLogged.id}});
+      res.render("userProfile", { orders: orders });
+    } catch(error){
+      console.log(error);
+      res.send("ocurrio un error inesperado");
+    }
+    
   },
 
   edit: async function (req, res) {
@@ -130,15 +133,7 @@ const controller = {
     res.redirect("/");
   },
 
-  allBuys: function (req, res) {
-    let buysPath = path.join(
-      __dirname,
-      "../models/bills/bill" + req.session.userLogged.cart + ".json"
-    );
-    let buys = JSON.parse(fs.readFileSync(buysPath, "utf-8"));
-    res.render("allBuys", { buys });
-  },
-
+ 
   getOrder: async function(req, res){
     try{
       let order = await db.Order.findOne({
@@ -150,8 +145,7 @@ const controller = {
           }
         ]
       })
-      // let orderProducts = await db.OrderProduct.findAll({where: {orderId: req.params.id}})
-      console.log(order.orderProducts[1].name);
+
       // res.send(order)
 
       if(!order){

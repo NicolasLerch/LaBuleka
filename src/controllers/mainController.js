@@ -1,7 +1,5 @@
-let productos = require('../models/products');
-let path = require('path');
-const fs = require('fs');
 const db = require('../data/models');
+const Op = db.Sequelize.Op
 
 
 const mainController = {
@@ -38,6 +36,18 @@ const mainController = {
 
     contact: function(req, res){
         res.render('contact')
+    },
+    search: async function(req, res){
+        try{
+            let products = await db.Product.findAll({
+                where: {name: {[Op.like]: `%${req.query.query_search}%`} }
+            })
+            res.render('index', {productos: products})
+        } catch(error){
+            console.log(error);
+            res.send('ocurrio un error inesperado');
+        }
+        
     }
 }
 

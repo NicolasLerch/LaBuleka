@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
             name: data.product.name,
             price: data.product.price,
             quantity: product.quantity,
-            subtotal: data.product.price * product.quantity,
+            subtotal: data.product.price * product.quantity
           });
         })
         .then(() => {
@@ -109,7 +109,8 @@ document.addEventListener("DOMContentLoaded", function () {
       total: totalValue,
       date: date,
       products: products,
-      time: time
+      time: time,
+      count: products.length
     };
 
     fetch("/api/checkout", {

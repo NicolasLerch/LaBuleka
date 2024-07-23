@@ -27,15 +27,15 @@
         </div>
         <div class="buys-container">
             <h2>Mis compras</h2>
-            <%if(buys.length > 0){%>
-           <%for(i=0; i < buys.length; i++){%>
+            <%if(orders.length > 0){%>
+           <%for(i=0; i < orders.length; i++){%>
                 <div class="buy">
-                    <p class="buy-element">Fecha: <%=buys[i].date%></p>
-                    <p class="buy-element">Total: $<%=buys[i].total%></p>
-                    <p class="products-quantity buy-element">Cantidad de productos: <%=buys[i].count%></p>
+                    <p class="buy-element">Fecha: <%=orders[i].date%></p>
+                    <p class="buy-element">Total: $<%=orders[i].total%></p>
+                    <p class="products-quantity buy-element">Cantidad de productos: <%=orders[i].count%></p>
                     <!-- <a href="#" class="details-btn buy-element">Ver detalles</a> -->
-                    <form action="buys/:id" method="post">
-                        <button formmethod="POST" class="details-btn buy-element" type="submit">Ver detalles</button>
+                    <form action="order/<%= orders[i].id%>">
+                        <button  class="details-btn buy-element">Ver detalles</button>
                     </form>
     
                 </div>

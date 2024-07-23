@@ -16,7 +16,7 @@ router.delete('/delete', userController.delete)
 
 router.post('/logout', userController.logout)
 
-router.get('/buys', userController.allBuys)
+// router.get('/orders', userController.getOrders)
 
 router.get('/order/:id', authMiddleware, userController.getOrder)
 

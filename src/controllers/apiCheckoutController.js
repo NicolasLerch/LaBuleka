@@ -11,6 +11,7 @@ let controller = {
           date: req.body.date,
           time: req.body.time,
           orderProducts: req.body.products,
+          count: req.body.count
         },
         {
             include: [{model: db.OrderProduct, as: 'orderProducts'}],
