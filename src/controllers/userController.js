@@ -22,10 +22,10 @@ const controller = {
         password: hashedPassword,
         rol: "client",
       });
-      return res.redirect('/')
+      return res.redirect('/login')
     } catch (error) {
       console.log(error);
-      return res.send("Ocurrio un error inesperado. Intente nuevamente.");
+      return res.render("errorPage.");
     }
     
   },
@@ -40,7 +40,7 @@ const controller = {
         
     } catch (error) {
         console.log(error);
-        res.send("No se encuentra el usuario");
+        res.render('404');
     }
 
     if (userToLogin != null) {
@@ -61,13 +61,12 @@ const controller = {
       res.render("userProfile", { orders: orders });
     } catch(error){
       console.log(error);
-      res.send("ocurrio un error inesperado");
+      res.render("errorPage");
     }
     
   },
 
   edit: async function (req, res) {
-    let buys = []
     let userToEdit = await db.User.findOne({ where: { id: req.session.userLogged.id } });
     let userPassword = userToEdit.password;
     let equalPass = true;
@@ -94,13 +93,11 @@ const controller = {
         }, { where: { id: req.session.userLogged.id } });
 
         let userEdited = await db.User.findOne({ where: { id: req.session.userLogged.id } });
-        req.session.userLogged = userEdited;
-        // console.log(req.session.userLogged);
-        
+        req.session.userLogged = userEdited;        
         return res.redirect('/users/profile');
       } catch(error){
         console.log(error);
-        return res.send("Ocurrio un error inesperado. Intente nuevamente.");
+        return res.render('errorPage');
       }
       
     } else {
@@ -124,7 +121,7 @@ const controller = {
       return res.json({ success: true });
     } catch (error) {
       console.error(error);
-      res.json({ success: false, message: "Error al eliminar el usuario." });
+      res.render("errorPage");
     }
   },
 
@@ -146,20 +143,18 @@ const controller = {
         ]
       })
 
-      // res.send(order)
-
       if(!order){
-        res.send('No existe el pedido')
+        res.render('404')
       }
 
       if(order.userId != req.session.userLogged.id){
-        res.send('Este pedido no es tuyo.')
+        res.render('forbidden')
       }
 
       res.render('order', {order: order})
     } catch(error){
       console.log(error)
-      res.send("ocurrio un error inesperado")
+      res.render('errorPage')
     }
     
 

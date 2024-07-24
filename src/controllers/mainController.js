@@ -16,7 +16,7 @@ const mainController = {
             res.render('tienda', {productos: products});
         } catch(error){
             console.log(error);
-            res.send('ocurrio un error inesperado');
+            res.render('errorPage');
         }
         
     },
@@ -45,7 +45,7 @@ const mainController = {
             res.render('index', {productos: products})
         } catch(error){
             console.log(error);
-            res.send('ocurrio un error inesperado');
+            res.render('errorPage')
         }
         
     }

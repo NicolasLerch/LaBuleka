@@ -23,7 +23,7 @@ let controller = {
       
     } catch (error) {
       console.log(error);
-      return res.send("Ocurrio un error inesperado. Intente nuevamente.");
+      return res.render("errorPage");
     }
   },
 };

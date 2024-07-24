@@ -15,11 +15,7 @@ let controller = {
             return res.send(response)
         } catch(error){
             console.log(error)
-            let response ={
-                status: 'error',
-                message: 'No se pudo realizar la consulta. Intente nuevamente'
-            }
-            return res.send(response)
+            return res.render('errorPage')
         }
     },
 
@@ -43,14 +39,14 @@ let controller = {
                     message: 'No se encontro el producto'
                 }
             }
-            return res.send(response)
+            // return res.render('errorPage')
         } catch (error){
             console.log(error)
-            let response ={
-                status: 'error',
-                message: 'No se pudo realizar la consulta. Intente nuevamente'
-            }
-            return res.send(response)
+            // let response ={
+            //     status: 'error',
+            //     message: 'No se pudo realizar la consulta. Intente nuevamente'
+            // }
+            return res.render('errorPage')
         }
     },
 
@@ -69,11 +65,11 @@ let controller = {
 
         } catch (error){
             console.log(error);
-            let response = {
-                status: 'error',
-                message: 'No se pudo realizar la consulta. Intente nuevamente'
-            }
-            return res.send(response)
+            // let response = {
+            //     status: 'error',
+            //     message: 'No se pudo realizar la consulta. Intente nuevamente'
+            // }
+            res.render('errorPage')
         }
 
     }

@@ -26,6 +26,11 @@ header {
     background-color: #74B951;
 }
 
+.user-name-title{
+    color: white;
+    text-decoration: none;
+    font-size: 1.22em !important;
+}
 
 nav a {
     color: white;

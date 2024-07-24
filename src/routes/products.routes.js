@@ -3,6 +3,7 @@ const productController = require('../controllers/productController');
 const router = express.Router();
 const multer = require("multer")
 const path = require("path")
+const authAdmin = require('../middlewares/adminAuthMiddleware');
 
 const storage = multer.diskStorage ({
     destination: function (req, file, cb) {
@@ -19,18 +20,18 @@ const upload = multer({storage:storage})
 
 // router.use('/productos', productController.getAll);
 router.get("/", productController.getAll);
-router.get('/create', productController.create);
+router.get('/create', authAdmin,  productController.create);
 router.post('/create', upload.single("product-img"), productController.save);
 
 // vista de lista de productos para admin
-router.get('/all', productController.productsList)
+router.get('/all', authAdmin, productController.productsList)
 
 // editar producto
-router.put('/:id/edit',upload.single("product-img"), productController.edit)
+router.put('/:id/edit', authAdmin, upload.single("product-img"), productController.edit)
 
 // borrar producto
-router.delete('/:id/delete', productController.delete)
+router.delete('/:id/delete', authAdmin, productController.delete)
 
-// router.get('/tryDB', productController.tryDB)
+
 
 module.exports = router;

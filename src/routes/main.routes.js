@@ -24,4 +24,6 @@ router.get('/contact', mainController.contact)
 
 router.get('/search', mainController.search)
 
+router.get('/tienda/:category', productController.getProductsByCategory)
+
 module.exports = router;
