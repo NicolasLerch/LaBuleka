@@ -46,10 +46,9 @@ const controller = {
     if (userToLogin != null) {
       if (bcryptjs.compareSync(req.body.password, userToLogin.password)) {
         req.session.userLogged = userToLogin;
-        
-        res.redirect("/users/profile");
+        res.status(200).json({ success: "Login exitoso" });
       } else {
-        res.status(400).json({ error: "Contraseña incorrecta" });
+        return res.status(400).json({ error: "Contraseña incorrecta" });
       }
     } else {
       res.status(400).json({ error: "Usuario no encontrado." });

@@ -22,6 +22,9 @@
                 <form>
                     <button formaction="/users/logout" formmethod="POST" class="edit-btn" type="submit">Cerrar sesión</button>
                 </form>
+                <%if(locals.user.rol == "admin"){%>
+                    <a href="/products/all"><button class="edit-btn">Ver todos los productos</button></a>    
+                <%}%>
                 
             </div>
         </div>
