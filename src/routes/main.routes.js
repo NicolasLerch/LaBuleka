@@ -21,6 +21,7 @@ router.get('/cart', authMiddleware, cartController.getCart);
 
 
 router.get('/contact', mainController.contact)
+router.post('/contact', mainController.sendMessage)
 
 router.get('/search', mainController.search)
 

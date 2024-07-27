@@ -5,7 +5,7 @@ const db = require('../data/models');
 const controller = {
     getAll : async (req, res) => {
         try{
-            let products = await db.Product.findAll();
+            let products = await db.Product.findAll({where: {available: 1}});
             res.render('allProducts', {productos: products})
         } catch(error){
             console.log(error);
@@ -108,7 +108,7 @@ const controller = {
 
     getProductsByCategory: async function(req, res){
         try{
-            let products =  await db.Product.findAll({where: {category: req.params.category}})
+            let products =  await db.Product.findAll({where: {category: req.params.category, available: 1}})
             res.render('tienda', {productos: products})
 
         } catch(error){
