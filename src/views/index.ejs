@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%-include('./partials/head.ejs')%>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="..\css\principal.css">
+    <link href="/css/slideGallery.css" rel="stylesheet"/>
+    <script src="js/main.js"></script>
+    <script src="https://kit.fontawesome.com/49746c139e.js" crossorigin="anonymous"></script>
+
+    <title>La Buleka</title>
+
+    <!-- Fuentes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <%-include('./partials/header.ejs')%>
+    <!-- Div contenedor de imagenes en slideShow -->
+    <div class="img_slide_container">
+
+        <!-- Next and previous buttons -->
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+        <!-- Full width images -->
+        <div class="slide firstslide">
+            <div class="numbertext">1 / 4</div>
+            <img src="images/tomates.jpg" alt="tomates" style="width: 100%">
+        </div>
+
+        <div class="slide">
+            <div class="numbertext">2 / 4</div>
+            <img src="images/huevos.jpg" alt="Huevos">
+        </div>
+
+        <div class="slide">
+            <div class="numbertext">3 / 4</div>
+            <img src="images/chia.avif" alt="Chia">
+        </div>
+
+        <div class="slide">
+            <div class="numbertext">4 / 4</div>
+            <img src="images/Paltas.webp" alt="Paltas">
+        </div>
+
+        <div style="text-align:center" id="dots">
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+            <span class="dot" onclick="currentSlide(4)"></span>
+        </div>
+    </div>
+    <h2>PRODUCTOS DESTACADOS</h2>
+    <main>
+        <section>
+            <%for (i=0; i<productos.length; i++){%>
+            <article>
+                <div class="img_container">
+                    <img src= "images/products/<%= productos[i].image%>" alt="<%= productos[i].name%>">
+                </div>
+                <div class="product_footer">
+                    <p><%= productos[i].name%></p>
+                    <p>$<%= productos[i].price%></p>
+                </div>
+                <div class="add-cart">
+                    <%if(user){%>
+                        <form>
+                            <button class="buy-btn" type="submit" data-id="<%= productos[i].id%>" formaction="/cart/<%= productos[i].id%>" formmethod="POST">Agregar al carrito</button>
+                        </form>
+                        <%}else{%>
+                            <form>
+                                <button class="buy-btn" type="submit" formaction="/login" formmethod="GET" data-id="<%= productos[i].id%>">Agregar al carrito</button>
+                            </form>
+                    <%}%>
+                    
+                </div>
+            </article>
+            <%}%>
+        </section>
+        <br>
+        <a class="seeAllProductsLink" href="/products">Ver todos los productos</a>
+        <br>
+        <br>
+    </main>
+    <%-include('./partials/footer')%>
+    
+
+</body>
+</html>

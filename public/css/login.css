@@ -1,0 +1,36 @@
+.login-container{
+    display: flex;
+    margin: 50px auto;
+    padding: 20px;
+}
+
+.form-container{
+    display: flex;
+    flex-direction: column;
+    padding: 50px;
+    background-color:#74B951;
+    border-radius: 5px;
+    margin: auto;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+}
+
+form input{
+    border: none;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 5px;
+    height: 40px;
+}
+
+form button{
+    border: none;
+    border-radius: 5px;
+    margin: 30px 10px 0px;
+    padding: 5px;
+    height: 40px;
+    background-color: #E1EDDA;
+}

@@ -1,0 +1,58 @@
+<header>
+    <div class="dropdown">
+        <button class="dropbtn"><i class="fa-solid fa-bars"></i></button>
+        <div class="dropdown-content">
+            <a href="/">Inicio</a>
+            <a href="/tienda">Tienda</a>
+            <a href="/local">Local</a>
+            <%if(user){%>
+            <a href="/users/profile">Mi perfil</a>
+            <a href="/cart">Mi carrito</a>
+            <%}%>
+            <%if(user && user.rol == "admin"){%>
+                <a href="/products/create">Vender</a>
+            <%}%>
+            <a href="/contact">Contacto</a>
+        </div>
+    </div>
+    <div class="logo-container">
+        <a href="/"> <img src="/images/logo.png" alt="La Buleka logo"/> </a>
+    </div>
+    <div class="bottom-header">
+        <nav class="horizontal_nav">
+            <ul>
+                <li><a href="/">Inicio</li>
+                <li><a href="/tienda">Comprar</li>
+                <li><a href="/local">Local</li>
+                <li><a href="/contact">Contacto</a></li>
+                <%if(user && user.rol == "admin"){%>
+                    <li><a href="/products/create">Vender</a></li>
+                <%}%>
+            </ul>
+        </nav>
+        
+        <%if(user){%>
+            <p class="user-name-title"><a class="user-name-title" href="/users/profile">Hola <%=user.name%></a></p>
+            <!-- <a href="/cart"><i class="fa-solid fa-cart-shopping"></i></a>
+            <a class ="user-icon" href="/users/profile"><i class="fa-solid fa-user"></i></a> -->
+            <%}else{%>
+        <a class ="user-icon" href="/login"><i class="fa-solid fa-user"></i></a>
+        <%}%>
+        <div class="header-cart-container">
+            <a href="/cart"><i class="fa-solid fa-cart-shopping"></i></a>
+            <span id ="cart-count" class="cart-count">0</span>
+        </div>
+        
+        <form action="/search">
+            <div class="search-bar desktop">
+                <input type="text" placeholder="Buscar productos" name="query_search">
+            </div>
+        </form>
+        
+        
+    </div>
+
+</header>
+<div class="search-bar mobile">
+    <input type="text" placeholder="Buscar productos" name="query_search">
+</div>

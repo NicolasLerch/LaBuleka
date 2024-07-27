@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%-include('./partials/head.ejs')%>
+    <link rel="stylesheet" href="./css/cart.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+</head>
+<body>
+    <%-include('./partials/header.ejs')%>
+
+
+    <h2>Carrito de compras</h2>
+    <main>
+        
+        <div class="cart-container">           
+            
+                <div class="one-product-container">
+                    <table class="table table-responsive-md mb-0">
+                        <thead>
+                            <tr>
+                                <th style="width: 50px;">
+                                    <strong>#</strong>
+                                </th>
+                                <th class="th-lg">
+                                    <strong>Producto</strong>
+                                </th>
+                                <th class="th-lg ">
+                                    <strong>Precio</strong>
+                                </th>
+                                <th class="text-center">
+                                    <strong>Cantidad</strong>
+                                </th>
+                                <th class="text-center">
+                                    <strong>Subtotal</strong>
+                                </th>
+                                <th style="width: 50px;"></th>
+                            </tr>
+                        </thead>
+                        <tbody class="cartRows">
+                        </tbody>
+                    </table>
+                    
+                </div>
+
+            
+            <%if(user != undefined && cart.length > 0){%>
+            <form>
+                <button class="clear-button" type="submit" formaction="/cart?_method=DELETE" formmethod="POST">Limpiar carrito</button>
+            </form>
+            <%}else{%>
+                <h3>No hay productos agregados al carrito.</h3>
+            <%}%>
+        </div>
+
+        <div class="total-container">
+            <h4>Resumen de compra</h4>
+            
+            <!-- <h4>Descuentos: $</h4> -->
+                    
+            
+            <h3 class="totalValue"></h3>
+            <form id="checkoutForm">
+                <div class="shipping-method-container">
+                    <div class=" col-md-6 mb-4">
+                        <label for="country">Pago</label>
+                        <select class="custom-select d-block w-100" id="paymentMethod" name="paymentMethod"
+                            required="">
+                            <option value="">Elegir...</option>
+                            <option value="Efectivo">Efectivo</option>
+                            <option value="Débito">Tarjeta Débito</option>
+                            <option value="Crédito">Tarjeta Crédito</option>
+                        </select>    
+                    </div>
+                </div>
+                <button id="checkoutCart" formaction="/checkout" formmethod="POST" class="continue-button" type="submit">Continuar al pago</button>
+            </form>
+            
+            
+        </div>
+    </main>
+    
+    
+
+    <%-include('./partials/footer.ejs')%>
+    <script src="/js/getCart.js" type="text/javascript"></script>
+</body>
+</html>

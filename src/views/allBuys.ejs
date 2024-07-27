@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/allBuys.css">
+    <%-include('./partials/head.ejs')%>
+    <title>Mis compras</title>
+</head>
+<body>
+    <%-include('./partials/header.ejs')%>
+    <div class="buys-container">
+        <h2>Mis compras</h2>
+        <%for(i=0; i < buys.length; i++){%>
+            <div class="buy">
+                <ul>               
+                    <li class="buy-element">Comprador: <%=user.name + " " + user.lastName%></li>
+                    <li class="buy-element">Fecha: <%=buys[i].date%></li>
+                    <li class="products-quantity buy-element">Productos: <%=buys[i].count%></li>
+                    <li class="buy-element">Detalles de compra:</li>
+                    <%for(j=0; j < buys[i].detalle.length; j++){%>
+                        <ul>
+                            <li class="product">
+                                <p><%=buys[i].detalle[j].name%></p>
+                                <p> x<%=buys[i].detalle[j].quantity%></p>
+                                <p>Precio: $<%=buys[i].detalle[j].price%></p>
+                            </li>
+                        </ul>
+                    <%}%>
+                    <p>Subtotal: $<%=buys[i].subtotal%></p>
+                    <p class="buy-element">Total: $<%=buys[i].total%></p>
+                </ul>
+            </div>
+        <%}%>
+
+    </div>
+    
+    <%-include('./partials/footer.ejs')%>
+    
+</body>
+</html>

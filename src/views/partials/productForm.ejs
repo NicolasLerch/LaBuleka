@@ -1,0 +1,41 @@
+<form class="newProductForm" action="/products/create" method="POST" enctype="multipart/form-data">
+    <label for="">
+        <input type="text" name="name" placeholder="Nombre del producto">
+    </label>
+    <label for=""> <p>Imagen del producto</p>
+        <input type="file" name="product-img" placeholder="Imagen del producto">
+    </label>
+    <label for="">
+        <input type="text" name="price" placeholder="Precio*">
+    </label>
+    <select class="category" name="category">
+        <option value="" selected hidden>Categoria</option>
+        <option value="fruits">Frutas</option>
+        <option value="vegetables">Verduras</option>
+        <option value="seeds">Semillas</option>
+        <option value="cereal">Cereales</option>
+        <option value="legumes">Legumbres</option>
+        <option value="drinks">Bebidas</option>
+        <option value="other">Otros</option>
+    </select>
+    <label for="">
+        <input type="text" name="stock" placeholder="Stock">
+    </label>
+    <div class="available-container">
+        <label>
+            <input type="radio" name="available" value="1">
+        </label>Producto disponible
+    </div>
+    <div class="available-container">
+        <label>
+            <input type="radio" name="noAvailable" value="0">
+        </label>Producto no disponible            
+    </div>
+    
+    <button class="submit-button" type="submit">Guardar producto</button>
+    <div class="btns-container">
+        <button class="btn editBtn" type="submit">Guardar cambios</button>
+        <button type="button" class="btn deleteBtn">Eliminar producto</button>
+    </div>
+   
+</form>

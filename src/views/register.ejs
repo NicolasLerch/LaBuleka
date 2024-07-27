@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%-include('./partials/head.ejs')%>
+    <link rel="stylesheet" href="./css/register.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+</head>
+<body>
+    <%-include('./partials/header.ejs')%>
+
+    <h2>Creá tu usuario</h2>
+    <div class="register-container">
+        
+        <div class="form-container">
+            <form action="/register" method="POST" id="registerForm">
+                <label for="">
+                    <input class="resgiterInput" type="text" placeholder="Nombre" name="name">
+                </label>
+
+                <label for="">
+                    <input class="resgiterInput" type="text" placeholder="Apellido" name="lastName">
+                </label>
+
+                <label for="">
+                    <input class="resgiterInput" type="text" placeholder="Ingresa tu email" name="email">
+                </label>
+                <label for="">
+                    <input class="resgiterInput" type="password" placeholder="Ingresa tu contraseña" name="password">
+                </label>
+                <label for="">
+                    <input class="resgiterInput" type="password" placeholder="Repetí tu contraseña" name="repPassword">
+                </label>
+                <button type="submit">Registrarme</button>
+            </form>
+
+        </div>
+    </div>
+
+
+    <%-include('./partials/footer.ejs')%>
+    
+</body>
+</html>

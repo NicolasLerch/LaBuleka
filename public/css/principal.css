@@ -15,19 +15,9 @@ header {
     background-color: #74B951;
 }
 
-/* nav{
-    background-color: blue;
-    height: 20px;    
-    font-family: Calibri;      
-} */
-
-/* #horizontal_nav{
-    width: 100%;
-    height: 30px;
-    margin-bottom: 15px;
-    padding: 0px;
-    background-color: pink;    
-} */
+.mobile{
+    display: none;
+}
 
 nav a {
     color: white;
@@ -42,20 +32,32 @@ ul {
     padding: 0;
 }
 
-/* #horizontal_nav li {
-    display: block;
-    float: left;
-    width: 25%;
-    text-align: center;
-    height: 30px;
-    padding-top: 5px;
-    margin: 0px;
-} */
 
 nav li:hover{
     background-color: green;
 }
 
+.cartLink{
+    text-decoration: none;
+    color: white;
+    background-color: #74B951;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px auto;
+    width: 100px;
+}
+
+.seeAllProductsLink{
+    text-decoration: none;
+    color: white;
+    background-color: #74B951;
+    font-size: 20px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    /* font-weight: bold; */
+    margin: 30px auto;
+}
 
 /* pruebas */
     main section{
@@ -68,7 +70,6 @@ nav li:hover{
     text-align: center;
     align-content: center;
     background-color:   whitesmoke;
-    /* border: 1px solid #BBD8AD; */
     border-radius: 5px;
     padding-top: 5%;
     margin-bottom: 15px;
@@ -85,17 +86,63 @@ nav li:hover{
     width: 100%;
    }
 
-   .add-cart{
-    /* border: 1px dotted red; */
+   /* .add-cart button{
+    border: none;
+    border-radius: 5px;
     margin:5px;
     background-color: green;
     color: white;
     font-family: Open sans;
-   }
+    padding: 10px;
+   } */
 
-   .add-cart p{
+   .add-cart button{
+    border: none;
+    border-radius: 5px;
+    margin:5px;
+    background-color: green;
+    color: white;
+    font-family: Open sans;
+    padding: 10px;
+}
+
+   .add-cart button{
     padding: 10px;
    }
+
+   input.quantityInput{
+    width: 20%;
+}
+
+
+
+.user-name-title{
+    color: white;
+    font-size: 1.5em;
+    align-self: right;
+    text-align: right;
+}
+
+a.user-icon{
+    align-self: right;
+    width: 20px !important;
+    text-align: right;
+
+}
+
+.cart-count{
+    position: relative;
+    top: -14px;
+    left: -10px;
+    z-index: 1;
+    color: white;
+    font-size: 12px;
+    height: 3px;
+    width: 3px;
+    background-color: red;
+    border-radius: 50%;
+    padding: 5px 10px;
+}
 
 
 /* Media queries mobile */
@@ -126,7 +173,7 @@ nav li:hover{
     /* padding: 10px; */
    }
 
-   header .fa-solid{
+   header .fa-magnifying-glass{
     font-size: 1.7em;
     margin:auto;
     color: white;
@@ -137,10 +184,15 @@ nav li:hover{
    }
 
    .search-bar{
-    padding: 10px;
+    display: flex;
+    padding: 5px;
     width: 100%;
-    display: none;
-   }
+    border-radius: 5px;
+    }
+
+    .desktop{
+        display: none;
+    }
 
    .burger-menu{
     display: flex;
@@ -150,8 +202,9 @@ nav li:hover{
 
    .search-bar input{
     border-radius: 5px;
+    padding: 10px;
     border:none;
-    height: 25px;
+    height: 30px;
     width: 100%;
    }
 
@@ -211,6 +264,15 @@ nav li:hover{
         display: block;
     }
 
+    .fa-solid{
+        font-size: 2em;
+        color: white;
+    }
+
+    .fa-user{
+        margin-left: 35px;
+    }
+
 
 
    /*--------- MAIN ---------*/
@@ -247,19 +309,18 @@ nav li:hover{
     width: 100%;
    }
 
-   .add-cart{
-    border: 1px dotted red;
-    margin:5px;
-    background-color: green;
-    color: white;
-    font-family: Open sans;
-   }
+   .search-bar input{
+    border-radius: 5px;
+    height: 30px;
+    }
 
    main a{
     text-decoration: none;
     color: black;
     margin-bottom: 15px;
    }
+
+   /* FOOTER */
 
    footer article{
     margin: auto;
@@ -344,11 +405,11 @@ nav li:hover{
 
     .search-bar input{
         border: none;
-        border-radius: 10px;
-        height: 25px;
+        border-radius: 5px;
+        height: 30px;
     }
 
-    .bottom-header .fa-solid{
+    .bottom-header .fa-magnifying-glass{
         background-color: white;
         color: grey;
         border-radius: 5px;
@@ -372,6 +433,12 @@ nav li:hover{
     main article{
         width: 30%;
         margin:10px;
+    }
+
+    a.user-icon{
+        align-self: right;
+        width: 20%;
+        text-align: right;
     }
 
 }
@@ -412,7 +479,6 @@ nav li:hover{
         display: flex;
         justify-content: space-between;
         padding: 0 10px;
-        /* margin-bottom: 10px; */
         align-items: center;
     }
 
@@ -447,11 +513,11 @@ nav li:hover{
 
     .search-bar input{
         border: none;
-        border-radius: 10px;
-        height: 25px;
+        border-radius: 5px;
+        height: 30px;
     }
 
-    .bottom-header .fa-solid{
+    .bottom-header .fa-magnifying-glass{
         background-color: white;
         color: grey;
         border-radius: 5px;
@@ -502,6 +568,12 @@ nav li:hover{
         padding: 0;
         margin: 0;
     }
+
+    a.user-icon{
+        align-self: right;
+        width: 20%;
+        text-align: right;
+    }
 }
 
 @media (min-width: 800px){
@@ -518,6 +590,12 @@ nav li:hover{
     main section article{
         margin: 10px;
         width: 20%;
+    }
+
+    a.user-icon{
+        align-self: right;
+        width: 20%;
+        text-align: right;
     }
 }
 
@@ -551,7 +629,5 @@ nav li:hover{
         height: 100%; /* Add this line */
         object-fit: cover; /* Add this line */
     }
-
-
 
 }

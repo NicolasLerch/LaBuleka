@@ -1,0 +1,150 @@
+main{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 20px auto;
+    width: 100%;
+}
+
+.cart-container{
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    margin: 0px 10px 20px 10px;
+    border: 1px solid black;
+    border: none;
+    background-color: whitesmoke;
+    border-radius: 5px;
+    padding: 20px;
+    /* flex-grow: 1; */
+    overflow: hidden; 
+}
+
+.cart-container form{
+    margin-top: 15px;
+}
+
+.total-container{
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    width: 25%;
+    height: 100%;
+    border: none;
+    background-color: whitesmoke;
+    border-radius: 5px;
+    padding: 20px;
+    /* overflow-y:visible; */
+}
+
+.total-container h4{
+    margin: 5px;
+}
+
+.total-container h4:first-child{
+    border-bottom: 1px solid grey;
+    padding-bottom: 10px;
+}
+
+.one-product-container{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid black;
+}
+
+.one-product-container p{
+    width: 20%;
+}
+
+.one-product-container button.deleteBtn{
+    height: 30px;
+    align-self: center;
+    border-radius: 5px;
+    border: 1px solid grey;
+}
+
+.one-product-container button.deleteBtn:hover, .clear-button:hover, .continue-button:hover{
+    cursor: pointer;
+    box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 0.2);
+}
+
+.continue-button, .clear-button{
+    margin: auto;
+    border: none;
+    border-radius: 5px;
+    height: 30px;        
+}
+
+.continue-button{
+    background-color: green;
+    color: white;
+    margin-top: 20px;
+    width: auto;
+}
+
+.clear-button, .deleteBtn{
+    border: 1px solid grey !important;
+}
+
+.cart-count{
+    position: relative;
+    top: -14px;
+    left: -10px;
+    z-index: 1;
+    color: white;
+    font-size: 12px;
+    height: 3px;
+    width: 3px;
+    background-color: red;
+    border-radius: 50%;
+    padding: 5px 10px;
+}
+
+table.table{
+    width: 100%;
+}
+
+table.table tr{
+    text-align: left;
+}
+
+
+
+@media (max-width: 700px){
+    main{
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .cart-container, .total-container{
+        width:90%;
+        margin: auto;
+    }
+
+    .total-container{
+        margin-top: 20px;
+    }
+
+    .continue-button, .clear-button{
+        margin: auto;
+        border: none;
+        border-radius: 5px;
+        height: 30px;        
+    }
+
+    .continue-button{
+        background-color: green;
+        color: white;
+        width: 80px;
+    }
+
+    .clear-button, .deleteBtn{
+        border: 1px solid grey !important;
+    }
+
+    @media (max-width: 400px){
+        .priceTitle{
+            display: none;
+        }
+    }
+}

@@ -1,0 +1,36 @@
+CREATE SCHEMA IF NOT EXISTS labuleka_db;
+USE labuleka_db;
+CREATE TABLE IF NOT EXISTS orders(
+id INT NOT NULL AUTO_INCREMENT, 
+userId INT NOT NULL,
+total INT NOT NULL,
+paymentMethod VARCHAR(30) NOT NULL,
+date DATE NOT NULL,
+time TIME NOT NULL,
+count INT NOT NULL,
+primary key(id));
+
+CREATE TABLE IF NOT EXISTS orderProducts (
+id INT NOT NULL AUTO_INCREMENT,
+orderId INT NOT NULL,
+productId INT NOT NULL,
+name VARCHAR(70) NOT NULL,
+quantity INT NOT NULL,
+price INT NOT NULL,
+subtotal INT NOT NULL,
+
+FOREIGN KEY (orderId) REFERENCES orders(id),
+FOREIGN KEY (productId) REFERENCES products(id),
+PRIMARY KEY(id));
+
+ALTER TABLE orderProducts ADD CONSTRAINT orderproducts_ibfk_2
+  FOREIGN KEY (productId) REFERENCES products(id)
+  ON DELETE SET NULL;
+  
+CREATE TABLE IF NOT EXISTS messages (
+id INT AUTO_INCREMENT NOT NULL,
+name VARCHAR(70) NOT NULL,
+email VARCHAR(70) NOT NULL, 
+subject VARCHAR(100),
+message TEXT NOT NULL,
+PRIMARY KEY (id));

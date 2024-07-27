@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="..\css\principal.css">
+    <link href="/css/slideGallery.css" rel="stylesheet"/>
+    <script src="js/main.js"></script>
+    <script src="https://kit.fontawesome.com/49746c139e.js" crossorigin="anonymous"></script>
+
+    <title>La Buleka</title>
+
+    <!-- Fuentes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <%-include('./partials/header.ejs')%>
+    <h2>PRODUCTOS DESTACADOS</h2>
+    <main>
+        <section>
+            <%for (i=0; i<4; i++){%>
+            <article>
+                <div class="img_container">
+                    <img src= "<%= productos[i].img%>" alt="<%= productos[i].nombre%>">
+                </div>
+                <div class="product_footer">
+                    <p><%= productos[i].nombre%></p>
+                    <p>$<%= productos[i].precio%></p>
+                </div>
+                <div class="add-cart">
+                    <p>Agregar al carrito</p>
+                </div>
+            </article>
+            <%}%>
+        </section>
+        <a href="#">Ver todos los productos</a>
+    </main>
+    <%-include('./partials/footer')%>
+    
+
+</body>
+</html>

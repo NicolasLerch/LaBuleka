@@ -1,0 +1,16 @@
+INSERT INTO products (id, name, price, image, category, stock, available) VALUES
+(1, 'Porotos negros', 2500, 'product-1716504113122.webp', 'legumes', 10, 1),
+(3, 'Frutillas', 3000, 'product-1720826760896.jpg', 'fruits', 15, 1),
+(4, 'Manzanas Verdes', 1200, 'product-1715820862120.jpg', 'fruits', 50, 1),
+(5, 'Zanahorias', 2100, 'product-1722097725748.avif', '', 10, 1),
+(6, 'Tomates', 1300, 'product-1722097740538.webp', '', 10, 1),
+(7, 'Lechugas', 1000, 'product-1722097752634.webp', 'vegetables', 10, 1),
+(8, 'Pepinos', 1400, 'product-1716503829012.webp', 'vegetables', 20, 1),
+(9, 'Ajo', 800, 'product-1716503872096.jpg', 'vegetables', 20, 1),
+(10, 'Apio', 950, 'product-1716503919638.avif', 'vegetables', 23, 1),
+(11, 'Limones', 1450, 'product-1716503968548.avif', 'fruits', 30, 1),
+(12, 'Repollo', 500, 'product-1716504031622.webp', '', 0, 1),
+(13, 'Carbon', 1200, 'product-1716504077268.jpg', 'other', 30, 1),
+(15, 'Arroz blanco', 800, 'product-1715870090106.webp', 'other', 20, 1),
+(16, 'Papa', 1500, 'product-1715742073239.jpg', 'vegetables', 0, 0),
+(17, 'Acelga', 1350, 'product-1715742158523.webp', 'vegetables', 0, 0);
