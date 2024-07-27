@@ -10,6 +10,19 @@ const controller = {
     let hashedPassword = bcryptjs.hashSync(req.body.password, 10);
     let equalPass = bcryptjs.compareSync(req.body.repPassword, hashedPassword);
 
+    try{
+      let user = await db.User.findOne({where: {email: req.body.email.trim().toLowerCase()}});
+      if(user){
+        return res.status(400).json({ error: "Ya existe un usuario con esa dirección de email." });
+      }
+    } catch(error){
+      console.log(error);
+      return res.render("errorPage");
+    }
+
+    if(req.body.password.length > 10 || req.body.password.length < 5){
+      return res.status(400).json({ error: "La contraseña debe contener entre 5 y 10 caracteres" });
+    }
     if (!equalPass) {
       return res.status(400).json({ error: "Las contraseñas no coinciden." });
     }
@@ -22,7 +35,7 @@ const controller = {
         password: hashedPassword,
         rol: "client",
       });
-      return res.redirect('/login')
+      return res.status(200).json({ success: "Registro exitoso" });
     } catch (error) {
       console.log(error);
       return res.render("errorPage.");
