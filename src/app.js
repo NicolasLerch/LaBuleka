@@ -16,11 +16,12 @@ app.use(express.static('public'));
 app.use(session({secret: "buleka2024"}));
 app.set('view engine', 'ejs');
 app.set('views', './src/views');
-// app.use(sendSessionUser);
 
 app.use('/', sendSessionUser, indexRouter);
 
-// sequelize.db.authenticateDB();
+app.use((req, res, next) =>{
+    res.status(404).render('404')
+})
 
 app.listen(3000, () => {
     console.log('Servidor corriendo en puerto 3000')

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <%-include('./partials/head.ejs')%>
-    <link rel="stylesheet" href="css/tienda.css">
+    <link rel="stylesheet" href="/css/tienda.css">
 </head>
 
 <body>
@@ -12,13 +12,14 @@
         <aside class="categories">
             <p>Filtros</p>
             <ul>
-                <li>Frutas</li>
-                <li>Verduras</li>
-                <li>Legumbres</li>
-                <li>Semillas</li>
-                <li>Huevos</li>
-                <li>Bebidas</li>
-                <li>Otros</li>
+                <li><a href="/tienda/fruits">Frutas</li></a>
+                <li><a href="/tienda/vegetables">Verduras</li></a>
+                <li><a href="/tienda/legumes">Legumbres</li></a>
+                <li><a href="/tienda/seeds">Semillas</li></a>
+                <li><a href="/tienda/eggs">Huevos</li></a>
+                <li><a href="/tienda/drinks">Bebidas</li></a>
+                <li><a href="/tienda/cereal">Cereales</li></a>
+                <li><a href="/tienda/other">Otros</li></a>
             </ul>
         </aside>
         <div class="mobile-categories">
@@ -37,22 +38,16 @@
             <%for (i=0; i<productos.length; i++){%>
                 <article>
                     <div class="img_container">
-                        <img src= "/images/products/<%= productos[i].img%>" alt="<%= productos[i].nombre%>">
+                        <img src= "/images/products/<%= productos[i].image%>" alt="<%= productos[i].nombre%>">
                     </div>
                     <div class="product_footer">
                         <p><%= productos[i].name%></p>
                         <p>$<%= productos[i].price%></p>
                     </div>
-                    <div class="add-cart">
-                        <%if(user){%>
+                    <div class="add-cart">                        
                             <form>
-                                <button type="submit" formaction="/cart/<%= productos[i].id%>" formmethod="POST">Agregar al carrito</button>
-                            </form>
-                            <%}else{%>
-                                <form>
-                                    <button type="submit" formaction="/login" formmethod="GET">Agregar al carrito</button>
-                                </form>
-                        <%}%>
+                                <button class="buy-btn" type="submit" data-id="<%= productos[i].id%>">Agregar al carrito</button>
+                            </form>                            
                     </div>
                 </article>
                 <%}%>

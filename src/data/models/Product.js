@@ -39,6 +39,14 @@ module.exports= function(sequelize, DataTypes){
     }
 
     let Product = sequelize.define(alias, cols, config);
+
+    Product.associate = function(models){
+        Product.hasMany(models.OrderProduct, {
+            foreignKey: 'productId',
+            onDelete: 'SET NULL',
+          });
+    }
+
     return Product
 
 }

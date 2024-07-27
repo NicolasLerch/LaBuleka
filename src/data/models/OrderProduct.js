@@ -17,7 +17,7 @@ module.exports = function(sequelize, DataTypes) {
         },
         productId: {
             type: DataTypes.INTEGER,
-            allowNull: false
+            allowNull: true
         },
         quantity: {
             type: DataTypes.INTEGER,
@@ -29,6 +29,10 @@ module.exports = function(sequelize, DataTypes) {
         },
         name:{
             type: DataTypes.STRING(70),
+            allowNull: false
+        }, 
+        subtotal: {
+            type: DataTypes.INTEGER,
             allowNull: false
         }
     }
@@ -46,7 +50,8 @@ module.exports = function(sequelize, DataTypes) {
         })
         OrderProduct.belongsTo(models.Product, {
             as: "product",
-            foreignKey: "productId"
+            foreignKey: "productId",
+            onDelete: 'SET NULL'
         })
     }
     return OrderProduct

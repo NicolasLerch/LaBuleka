@@ -3,26 +3,27 @@ let db = require("../data/models");
 let controller = {
   newOrder: async function (req, res) {
     try {
-        let orderProducts = req.body.products
-        console.log(req.body);
         let order = await db.Order.create(
         {
           total: req.body.total,
           paymentMethod: req.body.paymentMethod,
           userId: req.session.userLogged.id,
+          date: req.body.date,
+          time: req.body.time,
           orderProducts: req.body.products,
+          count: req.body.count
         },
         {
             include: [{model: db.OrderProduct, as: 'orderProducts'}],
         }
         
       );
-    //   console.log(order);
+      console.log(order);
       res.json({success: true, status: 200, order: order})
-      location.href = "/";
+      
     } catch (error) {
       console.log(error);
-      return res.send("Ocurrio un error inesperado. Intente nuevamente.");
+      return res.render("errorPage");
     }
   },
 };

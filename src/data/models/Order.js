@@ -21,8 +21,15 @@ module.exports = function(sequelize, DataTypes){
         },
         date :{
             type: DataTypes.DATE,
-            allowNull: false,
-            defaultValue: DataTypes.NOW
+            allowNull: false         
+        },
+        time: {
+            type: DataTypes.TIME,
+            allowNull: false
+        },
+        count:{
+            type: DataTypes.INTEGER,
+            allowNull: false
         }
     }
     let config = {

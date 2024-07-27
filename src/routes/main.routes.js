@@ -5,6 +5,7 @@ const mainController = require('../controllers/mainController')
 const productController = require('../controllers/productController');
 const cartController = require('../controllers/cartController');
 const userController = require('../controllers/userController')
+const authMiddleware = require('../middlewares/authMiddleware');
 
 router.get('/', mainController.viewIndex);
 router.get('/local', mainController.viewLocal);
@@ -15,21 +16,14 @@ router.get('/login', mainController.login)
 router.get('/register', mainController.register)
 router.post('/register', userController.create)
 
-router.get('/cart', cartController.getCart);
+router.get('/cart', authMiddleware, cartController.getCart);
 // router.post('/cart/:id', cartController.addToCart);
 
 
-
-// limpiar el carrito completo
-// router.delete('/cart', cartController.emptyCart)
-
-// borrar un elemento del carrito
-// router.delete('/cart/:id', cartController.deleteFromCart)
-
-// router.get('/checksession', mainController.check)
-
-// router.post('/checkout', cartController.checkout)
-
 router.get('/contact', mainController.contact)
+
+router.get('/search', mainController.search)
+
+router.get('/tienda/:category', productController.getProductsByCategory)
 
 module.exports = router;

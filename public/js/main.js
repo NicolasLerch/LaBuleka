@@ -6,8 +6,6 @@ const plusSlides = (n) => {
     showSlides(slideIndex += n);
 }
 
-
-
 // CONTROL DE MENU HAMBURGUESA
 document.addEventListener("DOMContentLoaded", function() {
     var dropdown = document.getElementsByClassName("dropdown");

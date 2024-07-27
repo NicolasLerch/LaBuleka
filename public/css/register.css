@@ -14,7 +14,7 @@
     width: 100%;
 }
 
-form{
+form#registerForm{
     display: flex;
     flex-direction: column;
     width: 100%;

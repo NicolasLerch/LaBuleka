@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <%-include('./partials/head.ejs')%>
+    <link rel="stylesheet" href="/css/orderStyles.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order</title>
@@ -12,14 +13,20 @@
 
     <div class="order-container">
         <p>Fecha: <%=order.date%></p>
+        <p>Hora: <%=order.time %></p>
+        <%for (i=0; i < order.orderProducts.length; i++){%>
+            <div class="product-detail">
+                <p><%=order.orderProducts[i].name%></p>
+                <p>$ <%=order.orderProducts[i].price%></p><p>x <%=order.orderProducts[i].quantity%></p>
+                <p> $<%=order.orderProducts[i].subtotal%></p>
+                
+            </div>
+        <%}%>
+        <h3>Total: $<%=order.total%></h3>
+        <p>Pago: <%=order.paymentMethod%></p>
     </div>
+   
     
-
-
-
-
-
-
 
     <%-include('./partials/footer.ejs')%>
 </body>

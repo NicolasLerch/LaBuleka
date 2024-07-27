@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 <td> $${data.product.price}</td>
                 <td> ${product.quantity}</td>                
                 <td> $${data.product.price * product.quantity}</td>
-                <td><button id="delete${index}" class="deleteBtn">Eliminar</button></td>
+                <td><button id="delete${index}" class="deleteBtn" data-index="${index}">Eliminar</button></td>
                 </tr>                
                 `;
           totalValue += data.product.price * product.quantity;
@@ -67,6 +67,19 @@ document.addEventListener("DOMContentLoaded", function () {
             name: data.product.name,
             price: data.product.price,
             quantity: product.quantity,
+            subtotal: data.product.price * product.quantity
+          });
+        })
+        .then(() => {
+          // Añadir el event listener para todos los botones de eliminar
+          document.querySelectorAll(".deleteBtn").forEach(button => {
+            button.addEventListener("click", function (e) {
+              let buttonIndex = e.target.getAttribute("data-index");
+              let cart = JSON.parse(localStorage.getItem("cart"));
+              cart.splice(buttonIndex, 1); // Elimina el elemento del array
+              localStorage.setItem("cart", JSON.stringify(cart)); // Actualiza el localStorage
+              location.reload(); // Recarga la página para reflejar los cambios
+            });
           });
         });
     });
@@ -80,12 +93,24 @@ document.addEventListener("DOMContentLoaded", function () {
   checkoutBtn.addEventListener("click", (e) => {
     e.preventDefault();
 
-    console.log(products);
+    let d = new Date();
+    let year = d.getFullYear();
+    let month = d.getMonth() + 1;
+    let day = d.getDate();
+    let date = `${year}-${month}-${day}`;
+
+    let hour = d.getHours();
+    let minutes = d.getMinutes();
+    let seconds = d.getSeconds();
+    let time = `${hour}:${minutes}:${seconds}`;
 
     const formData = {
       paymentMethod: checkoutForm.paymentMethod.value,
       total: totalValue,
+      date: date,
       products: products,
+      time: time,
+      count: products.length
     };
 
     fetch("/api/checkout", {
@@ -97,7 +122,9 @@ document.addEventListener("DOMContentLoaded", function () {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        localStorage.removeItem("cart");
+        // console.log(res.order.id);
+        location.href = `/users/order/${data.order.id}`;
       })
       .catch((err) => {
         console.log(err);

@@ -4,15 +4,18 @@ const db = require('../data/models');
 
 const controller = {
     getAll : async (req, res) => {
-        let products = await db.Product.findAll();
-        res.render('allProducts', {productos: products})
+        try{
+            let products = await db.Product.findAll();
+            res.render('allProducts', {productos: products})
+        } catch(error){
+            console.log(error);
+            res.render('errorPage')
+        }       
     },
     create : function(req, res){
         res.render('newProduct');
     },
-    save: async function(req, res){
-        
-
+    save: async function(req, res){        
         let mainImage = "";
         if(!req.file || req.file == undefined){
             mainImage = "default.avif";
@@ -40,21 +43,28 @@ const controller = {
             });
         } catch (error) {
             console.log(error);
+            res.render('errorPage')
         }
 
         res.redirect("/products")
     },
 
     productsList : async function(req, res){
-        let products = await db.Product.findAll();
-        res.render("productsList", {productos : products})
+        try{
+            let products = await db.Product.findAll();
+            res.render("productsList", {productos : products})
+        }catch(error){
+            console.log(error);
+            res.render('errorPage')
+        }
+        
     },
 
     edit: async function(req, res){
 
             let productToEdit = await db.Product.findByPk(req.params.id);
             if (!productToEdit) {
-                res.send('No existe el producto');
+                res.render("404");
             }
 
         let mainImage;
@@ -76,23 +86,35 @@ const controller = {
            }, {where : { id : req.params.id}})
        } catch(error){
            console.log(error);
-           res.send('Ocurrio un error inesperado. No se pudo modificar el producto. Intente nuevamente');
+           res.render('errorPage')
        }
 
         res.redirect("/products/all");
     },
     delete: async function(req, res){
-        let productToDelete = await db.Product.findByPk(req.params.id)
-        if(!productToDelete){
-            res.send('No existe el producto');
+        try{
+            let productToDelete = await db.Product.findByPk(req.params.id)
+            if(!productToDelete){
+                res.render('404')
+            }    
+            await db.Product.destroy({where: {id: req.params.id}});
+            res.redirect("/products/all");
+        } catch(error){
+            console.log(error);
+            res.render('errorPage')
         }
-
-        await db.Product.destroy({where: {id: req.params.id}});
-        res.redirect("/products/all");
+        
     },
-    tryDB: async function(req, res){
-        let products = await db.Product.findAll();
-        res.send(products);
+
+    getProductsByCategory: async function(req, res){
+        try{
+            let products =  await db.Product.findAll({where: {category: req.params.category}})
+            res.render('tienda', {productos: products})
+
+        } catch(error){
+            console.log(error);
+            res.render('errorPage')
+        }
     }
 }
 

@@ -5,14 +5,24 @@ const bcryptjs = require("bcryptjs");
 const { log } = require("console");
 const db = require("../data/models");
 
-let usersFilePath = path.join(__dirname, "../models/users.json");
-let users = JSON.parse(fs.readFileSync(usersFilePath, "utf-8"));
-
 const controller = {
   create: async function (req, res) {
     let hashedPassword = bcryptjs.hashSync(req.body.password, 10);
     let equalPass = bcryptjs.compareSync(req.body.repPassword, hashedPassword);
 
+    try{
+      let user = await db.User.findOne({where: {email: req.body.email.trim().toLowerCase()}});
+      if(user){
+        return res.status(400).json({ error: "Ya existe un usuario con esa dirección de email." });
+      }
+    } catch(error){
+      console.log(error);
+      return res.render("errorPage");
+    }
+
+    if(req.body.password.length > 10 || req.body.password.length < 5){
+      return res.status(400).json({ error: "La contraseña debe contener entre 5 y 10 caracteres" });
+    }
     if (!equalPass) {
       return res.status(400).json({ error: "Las contraseñas no coinciden." });
     }
@@ -25,10 +35,10 @@ const controller = {
         password: hashedPassword,
         rol: "client",
       });
-      return res.redirect('/')
+      return res.status(200).json({ success: "Registro exitoso" });
     } catch (error) {
       console.log(error);
-      return res.send("Ocurrio un error inesperado. Intente nuevamente.");
+      return res.render("errorPage.");
     }
     
   },
@@ -43,28 +53,32 @@ const controller = {
         
     } catch (error) {
         console.log(error);
-        res.send("No se encuentra el usuario");
+        res.render('404');
     }
 
     if (userToLogin != null) {
       if (bcryptjs.compareSync(req.body.password, userToLogin.password)) {
         req.session.userLogged = userToLogin;
-        
-        res.redirect("/users/profile");
+        res.status(200).json({ success: "Login exitoso" });
       } else {
-        res.status(400).json({ error: "Contraseña incorrecta" });
+        return res.status(400).json({ error: "Contraseña incorrecta" });
       }
     } else {
       res.status(400).json({ error: "Usuario no encontrado." });
     }
   },
-  profile: function (req, res) {
-    let buys = []
-    res.render("userProfile", { buys: buys });
+  profile: async function (req, res) {
+    try{
+      let orders = await db.Order.findAll({where: {userId : req.session.userLogged.id}});
+      res.render("userProfile", { orders: orders });
+    } catch(error){
+      console.log(error);
+      res.render("errorPage");
+    }
+    
   },
 
   edit: async function (req, res) {
-    let buys = []
     let userToEdit = await db.User.findOne({ where: { id: req.session.userLogged.id } });
     let userPassword = userToEdit.password;
     let equalPass = true;
@@ -91,13 +105,11 @@ const controller = {
         }, { where: { id: req.session.userLogged.id } });
 
         let userEdited = await db.User.findOne({ where: { id: req.session.userLogged.id } });
-        req.session.userLogged = userEdited;
-        // console.log(req.session.userLogged);
-        
+        req.session.userLogged = userEdited;        
         return res.redirect('/users/profile');
       } catch(error){
         console.log(error);
-        return res.send("Ocurrio un error inesperado. Intente nuevamente.");
+        return res.render('errorPage');
       }
       
     } else {
@@ -121,7 +133,7 @@ const controller = {
       return res.json({ success: true });
     } catch (error) {
       console.error(error);
-      res.json({ success: false, message: "Error al eliminar el usuario." });
+      res.render("errorPage");
     }
   },
 
@@ -130,26 +142,31 @@ const controller = {
     res.redirect("/");
   },
 
-  allBuys: function (req, res) {
-    let buysPath = path.join(
-      __dirname,
-      "../models/bills/bill" + req.session.userLogged.cart + ".json"
-    );
-    let buys = JSON.parse(fs.readFileSync(buysPath, "utf-8"));
-    res.render("allBuys", { buys });
-  },
-
-  order: async function(req, res){
+ 
+  getOrder: async function(req, res){
     try{
-      let order = await db.Order.findByPk(req.params.id)
+      let order = await db.Order.findOne({
+        where: { id: req.params.id },
+        include: [
+          {
+            model: db.OrderProduct,
+            as: 'orderProducts',
+          }
+        ]
+      })
+
       if(!order){
-        res.send('No existe el pedido')
+        res.render('404')
+      }
+
+      if(order.userId != req.session.userLogged.id){
+        res.render('forbidden')
       }
 
       res.render('order', {order: order})
     } catch(error){
       console.log(error)
-      res.send("ocurrio un error inesperado")
+      res.render('errorPage')
     }
     
 
