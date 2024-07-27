@@ -5,7 +5,8 @@ const indexRouter = require('./routes/index.routes')
 const methodOverride = require('method-override');
 const session = require('express-session');
 const sendSessionUser = require('./middlewares/sendSessionUser')
-const sequelize = require("sequelize")
+const pool = require('./db')
+const PORT = require('./config')
 
 
 app.use(express.urlencoded({extended: false}))
@@ -19,12 +20,19 @@ app.set('views', './src/views');
 
 app.use('/', sendSessionUser, indexRouter);
 
+app.get('/ping', async (req, res)=>{
+    const result = await pool.query('SELECT * from labuleka_db.users')
+    console.log(result);
+    res.send(result[0]);
+})
+
 app.use((req, res, next) =>{
     res.status(404).render('404')
 })
 
-app.listen(3000, () => {
-    console.log('Servidor corriendo en puerto 3000')
+
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
 });
 
 
