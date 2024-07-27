@@ -4,7 +4,7 @@ const Op = db.Sequelize.Op
 
 const mainController = {
     viewIndex : async function (req, res){
-        let products = await db.Product.findAll();
+        let products = await db.Product.findAll({where: {available: 1}});
         res.render('index', {productos: products});
     },
     viewLocal : function (req, res){
@@ -21,7 +21,7 @@ const mainController = {
         
     },
     viewProducts : function(req, res){
-        res.render('index', {productos: productos.getAll()})
+        res.render('index', {productos: productos.getAll({where: {available: 1}})})
     },
     login: function(req, res){
         res.render('login')
@@ -40,7 +40,7 @@ const mainController = {
     search: async function(req, res){
         try{
             let products = await db.Product.findAll({
-                where: {name: {[Op.like]: `%${req.query.query_search}%`} }
+                where: {name: {[Op.like]: `%${req.query.query_search}%`}, available: 1},
             })
             res.render('index', {productos: products})
         } catch(error){
@@ -48,6 +48,16 @@ const mainController = {
             res.render('errorPage')
         }
         
+    },
+    sendMessage: async function(req, res){
+        try{
+            await db.Message.create(req.body);
+            return res.status(200).json({success: true, message: "Mensaje enviado. Nos comunicaremos lo antes posible."})
+
+        } catch(error){
+            console.log(error);
+            return res.status(400).json({success: false, message: "Error al enviar el mensaje. Intente nuevamente más tarde."})
+        }
     }
 }
 

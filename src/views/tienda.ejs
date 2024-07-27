@@ -35,6 +35,8 @@
             </select>
         </div>
         <section class="products">
+            <%if(productos.length == 0){%>
+                <p>No hay productos disponibles</p><%}%>
             <%for (i=0; i<productos.length; i++){%>
                 <article>
                     <div class="img_container">
